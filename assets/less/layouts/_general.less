@@ -1,0 +1,30 @@
+// Content wrapper
+.wrap {
+	margin-top: @section-spacing;
+}
+.wrap img {
+	max-width: 100%;
+	height: auto;
+}
+
+// Main content area
+.main {
+  .make-sm-column(@main-sm-columns);
+  .sidebar-primary & {
+    .make-sm-column(@main-sm-columns - @sidebar-sm-columns);
+  }
+}
+
+
+
+
+@media (min-width: @screen-sm-min) {
+	.half-gutter-row {
+		margin-left:  -(@grid-gutter-width / 4);
+		margin-right: -(@grid-gutter-width / 4);
+	}
+  	.half-gutter-col {
+		padding-left:  (@grid-gutter-width / 4);
+		padding-right: (@grid-gutter-width / 4);
+  	}
+}
