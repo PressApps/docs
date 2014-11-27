@@ -1,38 +1,85 @@
 <?php global $helpdesk; ?>
-<header class="banner navbar navbar-default navbar-static-top" role="banner">
-  <div class="container">
+<header class="banner js-toggle-menu" role="banner">
+  <ul class="hamburger-menu">
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
 
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+ 
+    <?php if ($helpdesk['logo']['url']) { ?>
+      <a class="navbar-brand-img" title="<?php bloginfo('name'); ?>" href="<?php echo home_url(); ?>"><img src="<?php echo $helpdesk['logo']['url']; ?>" alt="<?php bloginfo('name'); ?>"/></a>
+    <?php } else { ?>
+      <a class="navbar-brand" href="<?php echo esc_url(home_url('/')); ?>"><?php bloginfo('name'); ?></a>
+    <?php } ?>
 
-      <?php if ($helpdesk['logo']['url']) { ?>
-        <a class="navbar-brand-img" title="<?php bloginfo('name'); ?>" href="<?php echo home_url(); ?>"><img src="<?php echo $helpdesk['logo']['url']; ?>" alt="<?php bloginfo('name'); ?>"/></a>
-      <?php } else { ?>
-        <a class="navbar-brand" href="<?php echo esc_url(home_url('/')); ?>"><?php bloginfo('name'); ?></a>
-      <?php } ?>
 
-    </div>
 
-    <nav class="collapse navbar-collapse navbar-left" role="navigation">
+  <div class="navbar-example">
+
+
+
+    <nav class="menu-list" role="navigation">
       <?php
         if (has_nav_menu('primary_navigation_left')) :
-          wp_nav_menu(array('theme_location' => 'primary_navigation_left', 'menu_class' => 'nav navbar-nav'));
+          wp_nav_menu(array('theme_location' => 'primary_navigation_left', 'menu_class' => ' nav menu-main'));
         endif;
       ?>
     </nav>
 
-    <nav class="collapse navbar-collapse navbar-right" role="navigation">
-      <?php
-        if (has_nav_menu('primary_navigation_right')) :
-          wp_nav_menu(array('theme_location' => 'primary_navigation_right', 'menu_class' => 'nav navbar-nav'));
-        endif;
-      ?>
-    </nav>
+    <ul class="nav" role="tablist">
+
+    <?php
+    $sub_category_id = get_query_var('cat');
+    $subcat_args = array(
+      'child_of' => $sub_category_id,
+    );
+    $sub_categories = get_categories($subcat_args); 
+    $sub_categories = wp_list_filter($sub_categories,array('parent'=>$sub_category_id));
+    ?>
+
+    <?php if ($sub_categories) { ?>
+      
+        <?php foreach($sub_categories as $sub_category) {  ?>
+          <li class="menu-title">
+          <a href="#<?php echo $sub_category->slug; ?>"><?php echo $sub_category->name ?></a>
+          <ul class="nav sub-menu">
+          <?php 
+          $cat_posts = get_posts(array(
+            'orderby' => 'ID',
+            'order' => 'DESC',
+            'numberposts'   => -1,
+            'cat'  => $sub_category->term_id,
+          ));
+
+          foreach($cat_posts as $post){
+            setup_postdata($post);
+            ?>
+            <li class="menu-title"><a href="#<?php the_slug(); ?>"><span></span><?php the_title(); ?></a></li>
+            <?php
+          }
+          ?>
+          </ul>
+          </li>
+        <?php } ?> 
+
+    <?php } else { ?>
+
+      <?php while (have_posts()) : the_post(); ?>
+        <li class="menu-title"><a href="#<?php the_slug(); ?>"><?php the_title(); ?></a></li>
+      <?php endwhile; ?>
+
+    <?php } ?>  
+
+    </ul>
 
   </div>
+
+
+  
+
+
+
+
+
 </header>

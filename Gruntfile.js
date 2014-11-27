@@ -32,7 +32,7 @@ module.exports = function(grunt) {
         'assets/js/*.js',
         '!assets/js/scripts.js',
         '!assets/**/*.min.*',
-        //'!assets/js/icon-picker.js',
+        //'!assets/js/_main.js',
       ]
     },
     less: {
@@ -142,7 +142,7 @@ module.exports = function(grunt) {
           jsFileList,
           '<%= jshint.all %>'
         ],
-        tasks: ['jshint', 'concat']
+        tasks: ['concat']
       },
       livereload: {
         // Browser live reloading

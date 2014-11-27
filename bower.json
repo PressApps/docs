@@ -1,22 +1,27 @@
 {
-  "name": "roots",
-  "version": "7.0.2",
-  "homepage": "http://roots.io",
+  "name": "docs",
+  "version": "0.9.0",
+  "homepage": "http://pressapps.co",
   "authors": [
-    "Ben Word <ben@benword.com>"
+    "PressApps"
   ],
-  "license": "MIT",
-  "private": true,
+  "license": "GPL2",
   "ignore": [
     "**/.*",
     "node_modules",
-    "assets/vendor"
+    "assets/vendor",
+    "bower_components",
+    "test",
+    "tests"
   ],
   "dependencies": {
     "modernizr": "2.8.2",
     "bootstrap": "3.2.0",
     "respond": "1.4.2",
     "fitvids": "~1.1.0",
-    "devbridge-autocomplete": "~1.2.14"
-  }
+    "devbridge-autocomplete": "~1.2.14",
+    "sidr": "~1.2.1",
+    "perfect-scrollbar": "~0.5.7"
+  },
+  "description": "Documentation WP theme"
 }

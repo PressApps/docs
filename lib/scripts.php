@@ -16,7 +16,7 @@ function roots_scripts() {
       'css'       => '/assets/css/main.css',
       'print'  => '/assets/css/print.css',
       'js'        => '/assets/js/scripts.js',
-      'autocomplete'        => '/assets/vendor/devbridge-autocomplete/src/jquery.autocomplete.js',
+      'sidr'        => '/assets/vendor/sidr/jquery.sidr.min.js',
       'modernizr' => '/assets/vendor/modernizr/modernizr.js',
       'fitvids' => '/assets/vendor/fitvids/jquery.fitvids.js',
     );
@@ -27,7 +27,7 @@ function roots_scripts() {
       'css'       => '/assets/css/main.min.css?' . $assets['assets/css/main.min.css']['hash'],
       'print'  => '/assets/css/print.css',
       'js'        => '/assets/js/scripts.min.js?' . $assets['assets/js/scripts.min.js']['hash'],
-      'autocomplete'        => '/assets/js/vendor/jquery.autocomplete.min.js',
+      'sidr'        => '/assets/js/vendor/jquery.sidr.min.js',
       'modernizr' => '/assets/js/vendor/modernizr.min.js',
       'fitvids' => '/assets/js/vendor/jquery.fitvids.min.js',
     );
@@ -44,7 +44,7 @@ function roots_scripts() {
   wp_enqueue_script('modernizr', get_template_directory_uri() . $assets['modernizr'], array(), null, true);
   wp_enqueue_script('jquery');
   wp_enqueue_script('roots_js', get_template_directory_uri() . $assets['js'], array(), null, true);
-  wp_enqueue_script('autocomplete', get_template_directory_uri() . $assets['autocomplete'], array(), null, true);
+  wp_enqueue_script('sidr', get_template_directory_uri() . $assets['sidr'], array(), null, true);
   wp_enqueue_script('fitvids', get_template_directory_uri() . $assets['fitvids'], array(), null, true);
 }
 add_action('wp_enqueue_scripts', 'roots_scripts', 100);

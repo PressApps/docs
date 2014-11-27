@@ -39,7 +39,7 @@ $pa_includes = array(
   'lib/sidebar.php',         // Sidebar class
   'lib/config.php',          // Configuration
   'lib/titles.php',          // Page titles
-  'lib/nav.php',             // Custom nav modifications
+  //'lib/nav.php',             // Custom nav modifications
   'lib/dependencies.php',    // Install deoendency plugins
   'lib/scripts.php',         // Scripts and stylesheets
   'lib/extras.php',          // Custom functions
@@ -61,4 +61,28 @@ foreach ($pa_includes as $file) {
   require_once $filepath;
 }
 unset($file, $filepath);
+
+
+
+
+
+function hwl_home_pagesize( $query ) {
+    if ( is_category() ) {
+        // Display only 1 post for the original blog archive
+        $query->set( 'posts_per_page', -1 );
+        return;
+    }
+}
+add_action( 'pre_get_posts', 'hwl_home_pagesize', 1 );
+
+
+
+function the_slug($echo=true){
+  $slug = basename(get_permalink());
+  do_action('before_slug', $slug);
+  $slug = apply_filters('slug_filter', $slug);
+  if( $echo ) echo $slug;
+  do_action('after_slug', $slug);
+  return $slug;
+}
 
