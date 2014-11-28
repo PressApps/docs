@@ -143,6 +143,7 @@ module.exports = function(grunt) {
           '<%= jshint.all %>'
         ],
         tasks: ['concat']
+        //tasks: ['jshint', 'concat']
       },
       livereload: {
         // Browser live reloading

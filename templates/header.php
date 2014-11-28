@@ -1,45 +1,39 @@
 <?php global $helpdesk; ?>
 <header class="banner js-toggle-menu" role="banner">
-  <ul class="hamburger-menu">
+
+  <ul class="toggle-menu">
     <li></li>
     <li></li>
     <li></li>
   </ul>
 
- 
+  <div class="header-wrap">
+    
     <?php if ($helpdesk['logo']['url']) { ?>
       <a class="navbar-brand-img" title="<?php bloginfo('name'); ?>" href="<?php echo home_url(); ?>"><img src="<?php echo $helpdesk['logo']['url']; ?>" alt="<?php bloginfo('name'); ?>"/></a>
     <?php } else { ?>
       <a class="navbar-brand" href="<?php echo esc_url(home_url('/')); ?>"><?php bloginfo('name'); ?></a>
     <?php } ?>
 
-
-
-  <div class="navbar-example">
-
-
-
-    <nav class="menu-list" role="navigation">
-      <?php
-        if (has_nav_menu('primary_navigation_left')) :
-          wp_nav_menu(array('theme_location' => 'primary_navigation_left', 'menu_class' => ' nav menu-main'));
-        endif;
-      ?>
-    </nav>
-
-    <ul class="nav" role="tablist">
-
     <?php
-    $sub_category_id = get_query_var('cat');
-    $subcat_args = array(
-      'child_of' => $sub_category_id,
-    );
-    $sub_categories = get_categories($subcat_args); 
-    $sub_categories = wp_list_filter($sub_categories,array('parent'=>$sub_category_id));
+      if (has_nav_menu('primary_navigation_left')) :
+        wp_nav_menu(array('theme_location' => 'primary_navigation_left', 'menu_class' => ' nav menu-primary'));
+      endif;
     ?>
 
-    <?php if ($sub_categories) { ?>
-      
+    <div class="navbar-docs">
+      <ul class="nav" role="tablist">
+      <?php
+      $sub_category_id = get_query_var('cat');
+      $subcat_args = array(
+        'child_of' => $sub_category_id,
+      );
+      $sub_categories = get_categories($subcat_args); 
+      $sub_categories = wp_list_filter($sub_categories,array('parent'=>$sub_category_id));
+      ?>
+
+      <?php if ($sub_categories) { ?>
+        
         <?php foreach($sub_categories as $sub_category) {  ?>
           <li class="menu-title">
           <a href="#<?php echo $sub_category->slug; ?>"><?php echo $sub_category->name ?></a>
@@ -63,23 +57,16 @@
           </li>
         <?php } ?> 
 
-    <?php } else { ?>
+      <?php } else { ?>
 
-      <?php while (have_posts()) : the_post(); ?>
-        <li class="menu-title"><a href="#<?php the_slug(); ?>"><?php the_title(); ?></a></li>
-      <?php endwhile; ?>
+        <?php while (have_posts()) : the_post(); ?>
+          <li class="menu-title"><a href="#<?php the_slug(); ?>"><?php the_title(); ?></a></li>
+        <?php endwhile; ?>
 
-    <?php } ?>  
-
-    </ul>
-
+      <?php } ?>  
+      </ul>
+    </div>
+    
   </div>
-
-
-  
-
-
-
-
 
 </header>

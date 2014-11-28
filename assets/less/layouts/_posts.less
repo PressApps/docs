@@ -65,6 +65,56 @@
 }
 
 /**
+ * Scroll to top
+ */
+a.scroll-top {
+  position: fixed;
+  bottom: 2em;
+  right: 2em;
+  background: rgba(0, 0, 0, 0.7);
+  display: inline-block;
+  height: 2.5em;
+  width: 2.5em;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  text-indent: -999em;
+}
+a.scroll-top:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-family: 'WebSymbolsRegular';
+  content: ">";
+  -webkit-transform: rotate(-90deg);
+  /* Saf3.1+, Chrome */
+
+  -moz-transform: rotate(-90deg);
+  /* FF3.5+ */
+
+  -ms-transform: rotate(-90deg);
+  /* IE9 */
+
+  -o-transform: rotate(-90deg);
+  /* Opera 10.5 */
+  transform: rotate(-90deg);
+  zoom: 1;
+  text-indent: 0;
+  text-align: center;
+  color: #fff;
+  line-height: 2;
+}
+a.scroll-top:hover {
+  background: #000;
+}
+
+/**
  * Article voting
  */
 .vote {

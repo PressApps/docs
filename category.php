@@ -8,7 +8,13 @@
   </div>
 <?php endif; ?>
 
-
+    <?php if ($helpdesk['headline_search']) { ?>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <?php get_template_part('templates/search', 'form'); ?>
+        </div>
+      </div>
+    <?php } ?>
 
 <?php
 /**
@@ -21,7 +27,7 @@ $subcat_args = array(
 $sub_categories = get_categories($subcat_args); 
 $sub_categories = wp_list_filter($sub_categories,array('parent'=>$sub_category_id));
 ?>
-
+<ul class="procedures">
 <?php if ($sub_categories) { ?>
   
     <?php foreach($sub_categories as $sub_category) {  ?>
@@ -37,7 +43,7 @@ $sub_categories = wp_list_filter($sub_categories,array('parent'=>$sub_category_i
 	    foreach($cat_posts as $post){
 	      setup_postdata($post);
 	      ?>
-			<?php get_template_part('templates/content', 'doc'); ?>
+			<li><?php get_template_part('templates/content', 'doc'); ?></li>
 	      <?php
 	    }
 	    ?>
@@ -49,4 +55,6 @@ $sub_categories = wp_list_filter($sub_categories,array('parent'=>$sub_category_i
     <?php get_template_part('templates/content', 'doc'); ?>
   <?php endwhile; ?>
 
-<?php } ?>  
+<?php } ?> 
+</ul>
+<a class="scroll-top" href="#top"><?php _e('Back To Top', 'pressapps'); ?></a>

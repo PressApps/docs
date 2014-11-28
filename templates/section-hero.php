@@ -1,6 +1,6 @@
 <?php global $helpdesk; ?>
 <section class="section-hero">
-  <div class="container">
+  <div class="container1">
     <?php the_title( '<h1 class="title">', '</h1>' ); ?>
     <?php if ($helpdesk['subtitle']) { ?>
       <h4 class="subtitle"><?php echo $helpdesk['subtitle']; ?></h4>

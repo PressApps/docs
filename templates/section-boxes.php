@@ -35,7 +35,7 @@ $boxes = get_page_boxes();
 ?>
 
 <section class="section-boxes">
-    <div class="container">
+    <div class="container1">
         
         <?php
         if ($title) {

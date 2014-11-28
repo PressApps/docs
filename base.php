@@ -1,5 +1,5 @@
 <?php get_template_part('templates/head'); ?>
-<body <?php body_class(); ?> data-spy="scroll" data-target=".navbar-example" data-offset="50">
+<body <?php body_class(); ?> data-spy="scroll" data-target=".navbar-docs" data-offset="50">
 
   <!--[if lt IE 8]>
     <div class="alert alert-warning">
@@ -12,16 +12,16 @@
     get_template_part('templates/header');
   ?>
 
-  <div class="wrap container1" role="document">
+  <div class="wrap container" role="document">
     <div class="content row">
       <main class="main" role="main">
         <?php include roots_template_path(); ?>
       </main><!-- /.main -->
     </div><!-- /.content -->
-    <?php get_template_part('templates/footer'); ?>
   </div><!-- /.wrap -->
 
-
+  <?php get_template_part('templates/footer'); ?>
+  
   <?php wp_footer(); ?>
 
 </body>

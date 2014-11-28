@@ -1,6 +1,6 @@
 <?php global $helpdesk; ?>
 <section class="section-sidebar">
-	<div class="container">
+	<div class="container1">
 		<div class="row half-gutter-row">
 			<?php 
 			//$home_sidebar = redux_post_meta( 'helpdesk', $post->ID, 'home_sidebar' );

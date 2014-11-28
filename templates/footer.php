@@ -13,5 +13,3 @@
     </div>
   </div>
 </footer>
-
-<a class="scroll-top" href="#top"><?php _e('Back To Top', 'pressapps'); ?></a>
