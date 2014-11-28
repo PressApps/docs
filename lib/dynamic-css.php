@@ -17,6 +17,32 @@ function pa_output_css() {
   $output .= '.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus { background-color: ' . $helpdesk['primary_color']['regular'] . '; border-color: ' . $helpdesk['primary_color']['regular'] . '}';
   $output .= '.pagination > li > a, .pagination > li > a:hover { color: ' . $helpdesk['primary_color']['regular'] . ';}';
 
+  $width = $helpdesk['banner_width'];
+  $output .= '
+    .banner {width: ' . $width . 'px;}
+    @media only screen and (min-width: 768px) {
+      body {padding-left: ' . $width . 'px;}
+    }
+    @media only screen and (max-width: 767px) {
+      .banner {
+        width: ' . $width . 'px;
+        -webkit-transform: translateX(-' . $width . 'px);
+        -moz-transform: translateX(-' . $width . 'px);
+        -o-transform: translateX(-' . $width . 'px);
+        -ms-transform: translateX(-' . $width . 'px);
+        transform: translateX(-' . $width . 'px);
+      }
+      body.open-menu .wrap {
+        pointer-events: none;
+        -webkit-transform: translateX(' . $width . 'px);
+        -moz-transform: translateX(' . $width . 'px);
+        -o-transform: translateX(' . $width . 'px);
+        -ms-transform: translateX(' . $width . 'px);
+        transform: translateX(' . $width . 'px);
+      }
+    }
+  ';
+
   if (pa_left_sidebar()) {
     $output .= ' @media (min-width: 768px) { .sidebar-primary .main { float: right; } }';
   }

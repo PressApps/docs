@@ -415,7 +415,47 @@
                     'icon'   => 'el-icon-minus',
                     'title'  => __( 'Navigation', 'redux-framework-demo' ),
                     'fields' => array(
+                    )
+                );
+
+                $this->sections[] = array(
+                    'icon'   => 'el-icon-website',
+                    'title'  => __( 'Sidebar', 'redux-framework-demo' ),
+                    'fields' => array(
                         array(
+                            'id' => 'banner_width',
+                            'type' => 'slider',
+                            'title' => __('Sidebar Width', 'redux-framework-demo'),
+                            'desc' => __('Select sidebar width in px.', 'redux-framework-demo'),
+                            "default" => 300,
+                            "min" => 200,
+                            "step" => 10,
+                            "max" => 400,
+                            'display_value' => 'text'
+                        ),
+                        array(
+                            'id'       => 'banner_bg',
+                            'type'     => 'color',
+                            'output'   => '.banner, .banner .toggle-menu',
+                            'title'    => __( 'Background', 'redux-framework-demo' ),
+                            'transparent' => false,
+                            'validate' => 'color',
+                            'mode'     => 'background',
+                            'desc' => __( 'Sidebar background with image or color.', 'redux-framework-demo' ),
+                            'default'  => '#232830',
+                        ),
+                        array(
+                            'id'       => 'navbar_hover_bg',
+                            'type'     => 'color',
+                            'title'    => __( 'Navigation Hover Background', 'redux-framework-demo' ),
+                            'default'  => '#5b90bf',
+                            'mode'     => 'background',
+                            'transparent' => false,
+                            'validate' => 'color',
+                            'output'    => '.nav li a:hover, .nav li a:focus, .navbar-docs li.active > a, .current-menu-parent > a, .current-menu-item a',
+                        ),
+
+                                                array(
                             'id'       => 'navbar_link_color',
                             'type'     => 'link_color',
                             'title'    => __( 'Link Colors', 'redux-framework-demo' ),
@@ -425,23 +465,9 @@
                                 'hover'   => '#439dd0',
                             ),
                         ),
-                    )
-                );
 
-                $this->sections[] = array(
-                    'icon'   => 'el-icon-website',
-                    'title'  => __( 'Headline', 'redux-framework-demo' ),
-                    'fields' => array(
-                        array(
-                            'id'       => 'headline_bg',
-                            'type'     => 'background',
-                            'output'   => array( '.headline' ),
-                            'title'    => __( 'Background', 'redux-framework-demo' ),
-                            'desc' => __( 'Headline background with image or color.', 'redux-framework-demo' ),
-                            'default'  => array(
-                                'background-color' => '#f3f3f3',
-                            )
-                        ),
+
+
                         array(
                             'id'       => 'headline_text',
                             'type'     => 'color',

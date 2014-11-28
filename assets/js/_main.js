@@ -166,34 +166,6 @@ jQuery(function ($) {
     });
 });
 
-/*
-22236666
-jQuery(window).resize(function() {
-  var path = $(this);
-  var contW = path.width();
-  if(contW >= 751){
-    document.getElementsByClassName("sidebar-toggle")[0].style.left="250px";
-  }else{
-    document.getElementsByClassName("sidebar-toggle")[0].style.left="-250px";
-  }
-});
-*/
-
-/*
-!function(){
-  var e=Chart.helpers;Chart.defaults.global.responsive=!0,Chart.defaults.global.animation=!1;
-  var t=document.getElementById("js-toggle-menu");
-  e.addEvent(t,"click",function(){document.body.className=-1!==document.body.className.indexOf("open-menu")?"closed-menu":"open-menu"});
-  var n=document.getElementsByTagName("article");
-
-  e.each(n,function(t){if(t.id){var n=t.getElementsByTagName("canvas"),a=t.getElementsByTagName("h3"),l=t.querySelectorAll(".javascript"),i=Array.prototype.slice.call(l,0,2);
-    if(articleId=t.id,list=document.createElement("ul"),navigationItem=document.getElementById("link-"+articleId),list.className="subsection-navigation",e.each(a,function(e){var t=document.createElement("li");
-      e.id=articleId+"-"+e.textContent.replace(/\s+/g,"-").toLowerCase(),t.innerHTML='<a href="#'+e.id+'">'+e.textContent+"</a>",list.appendChild(t)}),a.length>0&&navigationItem.appendChild(list),n.length>0){var o="",c=[];
-    e.each(n,function(e){c.push(e.getContext("2d"))}),c=c.length>1?c:c[0];
-    for(var d=i.length-1;d>=0;d--)o+=i[d].textContent;
-      new Function("ctx","options",o)(c)}}})}();
-
-  */
 
 jQuery().ready(function($){
 
