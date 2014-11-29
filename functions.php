@@ -48,7 +48,7 @@ $pa_includes = array(
   'lib/popular.php',          // Custom
   'lib/live-search.php',          // Custom
   'lib/category-icons.php',          // Custom
-  'lib/votes.php',          // Custom
+  //'lib/votes.php',          // Custom
   'lib/breadcrumbs.php',          // Custom
   'lib/dynamic-css.php',          // Custom
 );
@@ -64,16 +64,13 @@ unset($file, $filepath);
 
 
 
-
-
-function hwl_home_pagesize( $query ) {
-    if ( is_category() ) {
-        // Display only 1 post for the original blog archive
-        $query->set( 'posts_per_page', -1 );
-        return;
-    }
+function filter_query( $query ) {
+  if ( is_category() ) {
+      $query->set( 'posts_per_page', -1 );
+    return;
+  }
 }
-add_action( 'pre_get_posts', 'hwl_home_pagesize', 1 );
+add_action( 'pre_get_posts', 'filter_query', 1 );
 
 
 

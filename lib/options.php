@@ -265,6 +265,15 @@
                             'type'      => 'text',
                         ),
                         array(
+                            'id'       => 'footer_text',
+                            'type'     => 'editor',
+                            'title'    => __( 'Footer Text', 'redux-framework-demo' ),
+                            'default'  => 'Powered by Helpdesk Theme.',
+                            'args'     => array(
+                                'media_buttons' => false,
+                            ),
+                        ),
+                        array(
                             'id'       => 'custom_css',
                             'type'     => 'ace_editor',
                             'title'    => __( 'CSS Code', 'redux-framework-demo' ),
@@ -272,88 +281,6 @@
                             'mode'     => 'css',
                             'theme'    => 'monokai',
                             'default'  => '',
-                        ),
-                    )
-                );
-
-                $this->sections[] = array(
-                    'icon'   => 'el-icon-screen',
-                    'title'  => __( 'Layout', 'redux-framework-demo' ),
-                    'fields' => array(
-                        array(
-                            'id'       => 'layout',
-                            'type'     => 'image_select',
-                            'title'    => __( 'Main', 'redux-framework-demo' ),
-                            'desc'     => __( 'Select main content and sidebar alignment.', 'redux-framework-demo' ),
-                            'options'  => array(
-                                '1' => array(
-                                    'alt' => '1 Column',
-                                    'img' => ReduxFramework::$_url . 'assets/img/1col.png'
-                                ),
-                                '2' => array(
-                                    'alt' => '2 Column Left',
-                                    'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
-                                ),
-                                '3' => array(
-                                    'alt' => '2 Column Right',
-                                    'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
-                                ),
-                            ),
-                            'default'  => '3'
-                        ),
-                        array(
-                            'id'       => 'layout_category',
-                            'type'     => 'image_select',
-                            'title'    => __( 'Category', 'redux-framework-demo' ),
-                            'desc'     => __( 'Select category page content and sidebar alignment.', 'redux-framework-demo' ),
-                            'options'  => array(
-                                '1' => array(
-                                    'alt' => '1 Column',
-                                    'img' => ReduxFramework::$_url . 'assets/img/1col.png'
-                                ),
-                                '2' => array(
-                                    'alt' => '2 Column Left',
-                                    'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
-                                ),
-                                '3' => array(
-                                    'alt' => '2 Column Right',
-                                    'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
-                                ),
-                            ),
-                            'default'  => '3'
-                        ),
-                        array(
-                            'id'       => 'layout_single',
-                            'type'     => 'image_select',
-                            'title'    => __( 'Single', 'redux-framework-demo' ),
-                            'desc'     => __( 'Select single page content and sidebar alignment.', 'redux-framework-demo' ),
-                            'options'  => array(
-                                '1' => array(
-                                    'alt' => '1 Column',
-                                    'img' => ReduxFramework::$_url . 'assets/img/1col.png'
-                                ),
-                                '2' => array(
-                                    'alt' => '2 Column Left',
-                                    'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
-                                ),
-                                '3' => array(
-                                    'alt' => '2 Column Right',
-                                    'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
-                                ),
-                            ),
-                            'default'  => '3'
-                        ),
-                        array(
-                            'id' => 'kb_columns_category',
-                            'type' => 'select',
-                            'title' => __('Subcategory Columns', 'pressapps' ), 
-                            'desc' => __('Select number of knowledge base subcategory columns displayed on category page.', 'pressapps' ),
-                            'options' => array(
-                                2 => '2 Columns',
-                                3 => '3 Columns',
-                                4 => '4 Columns',
-                            ),
-                            'default'   => '3', 
                         ),
                     )
                 );
@@ -370,51 +297,12 @@
                             "default"       => 1,
                         ),
                         array(
-                            'id'       => 'search_analytics',
-                            'type'     => 'switch',
-                            'title'    => __( 'Search Analytics', 'redux-framework-demo' ),
-                            'desc'     => __( 'Enable to save user search data for for analytics', 'redux-framework-demo' ),
-                            'default'  => '1'
-                        ),
-                        array(
                             'id'       => 'icons_category',
                             'type'     => 'switch',
                             'title'    => __( 'Category Icons', 'redux-framework-demo' ),
                             'desc'     => __( 'Enable category icons (Assign icons to categoies under Posts >> Categories).', 'redux-framework-demo' ),
                             'default'  => '1'
                         ),
-                        array(
-                            'id'       => 'icons_post_format',
-                            'type'     => 'switch',
-                            'title'    => __( 'Post Format Icons', 'redux-framework-demo' ),
-                            'desc'     => __( 'Enable post format icons.', 'redux-framework-demo' ),
-                            'default'  => '1'
-                        ),
-                        array(
-                            'title'     => __( 'Enable Nice Search', 'shoestrap' ),
-                            'desc'      => __( 'Redirects /?s=query to /search/query/, convert %20 to +.', 'shoestrap' ),
-                            'id'        => 'nice_search',
-                            'default'   => 1,
-                            'type'      => 'switch',
-                        ),
-                        array(
-                            'id'       => 'reset_all_votes',
-                            'type'     => 'button_set',
-                            'title'    => __( 'Reset All Article Votes', 'redux-framework-demo' ),
-                            'desc'     => __( 'Reset votes on all articles!', 'redux-framework-demo' ),
-                            'options'  => array(
-                                '1' => 'Reset All Votes'
-                            ),
-                            'multi'    => true,
-                            'default'  => '0'
-                        ),
-                    )
-                );
-
-                $this->sections[] = array(
-                    'icon'   => 'el-icon-minus',
-                    'title'  => __( 'Navigation', 'redux-framework-demo' ),
-                    'fields' => array(
                     )
                 );
 
@@ -454,8 +342,35 @@
                             'validate' => 'color',
                             'output'    => '.nav li a:hover, .nav li a:focus, .navbar-docs li.active > a, .current-menu-parent > a, .current-menu-item a',
                         ),
-
-                                                array(
+                        array(
+                            'title'     => __( 'Autocollapse Doc Menu', 'shoestrap' ),
+                            'desc'      => __( 'Autocollapse inactive subcategories in document menu', 'shoestrap' ),
+                            'id'        => 'autocollapse_doc',
+                            'default'   => 1,
+                            'type'      => 'switch',
+                        ),
+                        array(
+                            'id'       => 'banner_order',
+                            'title'    => __( 'Sidebar Layout', 'redux-framework-demo' ),
+                            'type'     => 'sorter',
+                            'options'  => array(
+                                'Sidebar'  => array(
+                                    'nav' => 'Primary Nav',
+                                    'docs'     => 'Docs Nav',
+                                    'sidebar'   => 'Widgets',
+                                ),
+                            ),
+                        ),
+                        array(
+                            'id'        => 'exlude_cats',
+                            'title'     => __('Exclude Categories', 'redux-framework-demo'),
+                            'type'      => 'select',
+                            'data'      => 'categories',
+                            'multi'     => true,
+                            'desc'      => __('Select categories to exlude from query (If none selected all categories will be displayed).', 'redux-framework-demo'),
+                        ),
+/*
+                        array(
                             'id'       => 'navbar_link_color',
                             'type'     => 'link_color',
                             'title'    => __( 'Link Colors', 'redux-framework-demo' ),
@@ -465,9 +380,6 @@
                                 'hover'   => '#439dd0',
                             ),
                         ),
-
-
-
                         array(
                             'id'       => 'headline_text',
                             'type'     => 'color',
@@ -494,161 +406,26 @@
                                 'padding-bottom' => '30px',
                             )
                         ),
-                        array(
-                            'id' => 'headline_search',
-                            'type' => 'button_set',
-                            'title'       => __( 'Search', 'shoestrap' ),
-                            'desc'        => __( 'Display a search form in the headline.', 'shoestrap' ),
-                            'options'   => array(
-                                '0' => 'Disabled',
-                                '1' => 'WP Search',
-                                '2' => 'Live Search',
-                            ),
-                            'default'     => 2,
-                        ),
-                        array(
-                            'id' => 'live_search_in',
-                            'type' => 'button_set',
-                            'title' => __('Search In', 'pressapps' ),
-                            'desc' => __('Search in post titles only or post titles and content.', 'pressapps' ),
-                            'required'    => array('headline_search','=',array('2')),
-                            'options' => array(
-                                '1' => 'Titles Only',
-                                '2' => 'Titles and Content'
-                            ),
-                            'default' => '2',
-                        ),
-                        array(
-                            'title'     => __( 'Search Placeholder', 'shoestrap' ),
-                            'desc'      => __( 'Enter search field placeholder.', 'shoestrap' ),
-                            'id'        => 'search_placeholder',
-                            'default'   => 'Search Knowledge Base Articles',
-                            'type'      => 'text',
-                        ),
+*/
                     )
                 );
-
                 $this->sections[] = array(
                     'icon'       => 'el-icon-file',
-                    'title'      => __( 'Single Page', 'redux-framework-demo' ),
+                    'title'      => __( 'Document Page', 'redux-framework-demo' ),
                     'fields'     => array(
                         array(
-                            'id'       => 'single_modules',
-                            'title'    => __( 'Layout', 'redux-framework-demo' ),
-                            'type'     => 'sorter',
-                            'options'  => array(
-                                'Enabled'  => array(
-                                    'voting' => 'Voting',
-                                    'related'     => 'Related',
-                                    'cta'   => 'CTA',
-                                    'comments' => 'Comments',
-                                ),
-                                'Disabled' => array(),
-                            ),
+                            'id' => 'header_filter',
+                            'type' => 'switch',
+                            'title'       => __( 'Filter', 'shoestrap' ),
+                            'desc'        => __( 'Display a search filter in the document page headline.', 'shoestrap' ),
+                            'default'     => 1,
                         ),
                         array(
-                            'id'       => 'print',
-                            'type'     => 'switch',
-                            'title'    => __( 'Print Button', 'redux-framework-demo' ),
-                            'desc'     => __( 'Display print button on article page.', 'redux-framework-demo' ),
-                            'default'  => '1'
-                        ),
-                        array(
-                            'id'       => 'article_voting',
-                            'type'     => 'button_set',
-                            'title'    => __( 'Article Voting', 'redux-framework-demo' ),
-                            'desc'     => __( 'Allow users to vote on articles.', 'redux-framework-demo' ),
-                            'options'  => array(
-                                '1' => 'Public Voting',
-                                '2' => 'Logged In Users Only'
-                            ),
-                            'default'  => '1'
-                        ),
-                        array(
-                            'id'       => 'related_articles',
-                            'type'     => 'button_set',
-                            'title'    => __( 'Related Articles', 'redux-framework-demo' ),
-                            'desc'     => __( 'Display related articles on single page.', 'redux-framework-demo' ),
-                            'options'  => array(
-                                '1' => 'Related by Tag',
-                                '2' => 'Related by Category'
-                            ),
-                            'default'  => '2'
-                        ),
-                        array(
-                            'id'       => 'article_meta',
-                            'type'     => 'checkbox',
-                            'title'    => __( 'Display Article Meta', 'redux-framework-demo' ),
-                            'desc'     => __( 'Select which aticle meta info to display.', 'redux-framework-demo' ),
-                            'options'  => array(
-                                '1' => 'Updated',
-                                '2' => 'Author',
-                                '3' => 'Category',
-                                '4' => 'Tags',
-                            ),
-                            'default'  => array(
-                                '1' => '1',
-                                '2' => '0',
-                                '3' => '0',
-                                '4' => '1',
-                            )
-                        ),
-                        array(
-                            'id'       => 'call_to_action',
-                            'type'     => 'editor',
-                            'title'    => __( 'Call To Action Content', 'redux-framework-demo' ),
-                            'default'  => '<h3 style="text-align: center;">Need additional help? We are more than happy to help, <a href="#">contact us</a>!</h3>',
-                        ),
-                    )
-                );
-
-                $this->sections[] = array(
-                    'icon'       => 'el-icon-minus',
-                    'title'      => __( 'Footer', 'redux-framework-demo' ),
-                    'fields'     => array(
-                        array(
-                            'id'       => 'footer_text',
-                            'type'     => 'editor',
-                            'title'    => __( 'Footer Text', 'redux-framework-demo' ),
-                            'default'  => 'Powered by Helpdesk Theme.',
-                            'args'     => array(
-                                'media_buttons' => false,
-                            ),
-                        ),
-                        array(
-                            'id'       => 'footer_bottom_border',
-                            'type'     => 'border',
-                            'title'    => __( 'Bottom Top Border', 'redux-framework-demo' ),
-                            'output'   => array( '.footer-bottom' ),
-                            'left'     => false,
-                            'right'     => false,
-                            'bottom'     => false,
-                            'default'  => array(
-                                'border-color'  => '#efefef',
-                                'border-style'  => 'solid',
-                                'border-top'    => '1px',
-                            )
-                        ),
-                        array(
-                            'id'       => 'footer_bottom_bg',
-                            'type'     => 'color',
-                            'title'    => __( 'Bottom Background Color', 'redux-framework-demo' ),
-                            'desc' => __( 'Pick a background color for the footer (default: #dd9933).', 'redux-framework-demo' ),
-                            'transparent' => false,
-                            'default'  => '#ffffff',
-                            'validate' => 'color',
-                            'mode'     => 'background',
-                            'output'   => '.footer-bottom',
-                        ),
-                        array(
-                            'id'       => 'footer_bottom_color',
-                            'type'     => 'color',
-                            'title'    => __( 'Bottom Text Color', 'redux-framework-demo' ),
-                            'desc' => __( 'Pick a bottom color.', 'redux-framework-demo' ),
-                            'default'  => '#84949f',
-                            'transparent' => false,
-                            'validate' => 'color',
-                            'output'   => array( '.footer-bottom, .footer-bottom a, .footer-bottom i' ),
+                            'title'     => __( 'Filter Placeholder', 'shoestrap' ),
+                            'desc'      => __( 'Enter filter field placeholder.', 'shoestrap' ),
+                            'id'        => 'filter_placeholder',
+                            'default'   => 'Filter Document',
+                            'type'      => 'text',
                         ),
                     )
                 );
@@ -666,11 +443,11 @@
                             'font-size'   => false,
                             'line-height'   => false,
                             'text-align'   => false,
-                            'color'     => false,
                             'subsets'     => false,
                             'default'  => array(
+                                'color' => '#363C45',
                                 'font-family' => 'Open Sans',
-                                'font-weight' => '400',
+                                'font-weight' => '600',
                             ),
                             'output'   => array( 'h1, h2, h3, h4, h5, h6' ),
                         ),
@@ -684,11 +461,10 @@
                             'text-align'   => false,
                             'subsets'     => false,
                             'default'  => array(
-                                'color'       => '#000000',
-                                'font-size'   => '14px',
+                                'color'       => '#727D93',
+                                'font-size'   => '15px',
                                 'font-family' => 'Open Sans',
                                 'font-weight' => '300',
-                                'line-height' => '22px'
                             ),
                             'output'   => array( 'body' ),
                         ),
@@ -711,6 +487,7 @@
                             ),
                             'output'   => array( 'a' ),
                         ),
+                        /*
                         array(
                             'id'       => 'secondary_color',
                             'type'     => 'color',
@@ -721,6 +498,7 @@
                             'validate' => 'color',
                             'output'   => array( 'h1, h2, h3, h4, h5, h6, .related, .comments, #respond, .box .entry-summary, .box p, .sidebar' ),
                         ),
+                        */
                     )
                 );
 

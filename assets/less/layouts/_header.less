@@ -27,10 +27,22 @@
 	-ms-overflow-style: -ms-autohiding-scrollbar;
 
 }
-.navbar-brand-img {
-	padding: @padding-header-btn-horizontal @padding-header-vertical;
+.navbar-brand, .navbar-brand-img {
 	background-color: rgba(0, 0, 0, 0.3);
 	display: block;
+	float: none;
+}
+.navbar-brand {
+	padding: 16px @padding-header-vertical;
+	font-weight: bold;
+	color: #fff;
+}
+.navbar-brand:hover {
+	color: rgba(255, 255, 255, 0.8);
+}
+
+.navbar-brand-img {
+	padding: @padding-header-btn-horizontal @padding-header-vertical;
 }
 
 /**
@@ -88,9 +100,6 @@
 	}
 }
 
-.navbar-docs ul ul {
-	display: none;
-}
 .navbar-docs ul li.active ul {
 	display: block;
 }
@@ -163,23 +172,31 @@ aside {
 /**
  * Main search field
  */
-.search-main .form-control {
-	width: 100%;
-}
 @media (min-width: 768px) {
-	.headline .navbar-form {
+	.navbar-form {
 		padding: 0;
 	}
 }
 .search-main {
 	position: relative;
 	z-index: 2;
-	border-bottom: 1px solid transparent;
+	border: 1px solid @element-border-color;
 	-webkit-box-shadow: none;
 	box-shadow: none;
+	background-color: rgba(0, 0, 0, 0.06);
+	padding: @padding-header-vertical;
+	margin-top: @section-spacing;
 }
 .search-main .search-form-group {
 	position: relative;
+}
+.search-main .form-control {
+	width: 100%;
+	padding-left: 30px;
+	color: #666;
+	height: 44px;
+	border-color: @element-border-color;
+	box-shadow: none;
 }
 .search-main .search-form-group .icon-Magnifi-Glass2 {
 	font-size: 16px;
@@ -187,13 +204,10 @@ aside {
 	left: 9px;
 	opacity: .7;
 }
-.headline .search-main .search-form-group .icon-Magnifi-Glass2 {
+.search-main .search-form-group .icon-Magnifi-Glass2 {
 	top: 13px;
 }
-.search-main input {
-	padding-left: 30px;
-	color: #666;
-}
+
 .search-main input::-webkit-input-placeholder {
    color: #999;
 }

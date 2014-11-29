@@ -8,7 +8,8 @@ function pa_output_css() {
   global $helpdesk;
 
   $output = '';
-                          
+  $output .= '.page-header p { color: ' . $helpdesk['font_body']['color'] . '; }';
+
   $output .= '.navbar-default .navbar-nav > li > a, .dropdown-menu > li > a { color: ' . $helpdesk['navbar_link_color']['regular'] . '; }';
   $output .= '.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav li > a:hover, .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus, .dropdown-menu > li > a:hover { color: ' . $helpdesk['navbar_link_color']['hover'] . '; }';
   $output .= 'section .box i, section .box h3, .sidebar h3 { color: ' . $helpdesk['primary_color']['regular'] . '; }';
@@ -16,6 +17,10 @@ function pa_output_css() {
   $output .= '.btn-primary:hover { background-color: ' . $helpdesk['primary_color']['hover'] . '; border-color: ' . $helpdesk['primary_color']['hover'] . '}';
   $output .= '.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus { background-color: ' . $helpdesk['primary_color']['regular'] . '; border-color: ' . $helpdesk['primary_color']['regular'] . '}';
   $output .= '.pagination > li > a, .pagination > li > a:hover { color: ' . $helpdesk['primary_color']['regular'] . ';}';
+  
+  if ($helpdesk['autocollapse_doc']) {
+    $output .= '.navbar-docs ul ul { display: none; }';
+  }
 
   $width = $helpdesk['banner_width'];
   $output .= '

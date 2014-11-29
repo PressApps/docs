@@ -23,7 +23,7 @@ var Roots = {
   common: {
     init: function() {
       // JavaScript to be fired on all pages
-      $(".main").fitVids();
+      $("main").fitVids();
 
 /*
 
@@ -42,9 +42,6 @@ $('#button').toggle(
 */
 
 
-$(document).ready(function() {
-  $('#sidebar').sidr();
-});
 
     }
   },
@@ -169,7 +166,7 @@ jQuery(function ($) {
 
 jQuery().ready(function($){
 
-  $('.js-toggle-menu').click(function(){
+  $('.banner a, .toggle-menu').not('.banner .menu-item-has-children > a').click(function(){
     document.body.className=-1!==document.body.className.indexOf("open-menu")?"closed-menu":"open-menu";
   });
 
@@ -187,11 +184,6 @@ jQuery().ready(function($){
     $( 'body,html' ).animate( { scrollTop: 0 }, 500 );
     e.preventDefault();
   });
-
-});
-    
-
-jQuery().ready(function($){
 
   $('.menu-item-has-children').find('.sub-menu').hide();
   $('.menu-item-has-children > a').click(function(e){
@@ -274,5 +266,5 @@ jQuery.fn.fastLiveFilter = function(list, options) {
 }
 
 jQuery().ready(function(){
-    jQuery('#searchcat').fastLiveFilter('.procedures');
+    jQuery('#searchcat').fastLiveFilter('.filter-list');
 });

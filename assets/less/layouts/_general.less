@@ -17,8 +17,7 @@ body {
 }
 
 .wrap {
-  padding: 40px 30px;
-  max-width: 880px;
+  padding: @section-spacing 30px;
   margin: 0 auto;
   -webkit-transition: -webkit-transform 200ms ease-in-out;
   -moz-transition: -moz-transform 200ms ease-in-out;
@@ -30,13 +29,13 @@ body {
 }
 @media (min-width: @screen-md-min) {
   .wrap {
-  	padding: 40px 60px;
+  	padding: @section-spacing 60px;
   }
 }
 
 .container {
 	width: inherit;
-	max-width: 880px;
+  max-width: 920px;
 	margin: 0 auto;
 }
 
@@ -57,3 +56,6 @@ body {
 		padding-right: (@grid-gutter-width / 4);
   	}
 }
+
+
+

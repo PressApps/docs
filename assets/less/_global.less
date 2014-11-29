@@ -1,5 +1,5 @@
 body {
-	line-height: 1.7em;
+	line-height: 1.8em;
 }
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	margin-top: 0;
@@ -9,4 +9,28 @@ a:hover {
 }
 .page-header {
 	margin-top: 0;
+	padding-bottom: @section-spacing;
+	margin-bottom: @section-spacing;
+	h1 {
+		margin: 0;
+	}
+	h3 {
+		margin: @section-spacing / 3 0 0;
+		line-height: 1.4em;
+		p {
+			margin: 0;
+		}
+	}
 }
+.page-header h3 {
+ 	font-weight: normal;
+}
+.cat-title {
+	margin-bottom: @section-spacing;
+}
+.filter-list {
+	padding: 0;
+	list-style: none;
+}
+
+

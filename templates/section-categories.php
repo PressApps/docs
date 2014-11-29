@@ -40,7 +40,7 @@ $categories = wp_list_filter($categories,array('parent'=>0));
             echo '<h2 class="section-title">' . $title . '</h2>';
         }
         ?>
-        <ul class="procedures">
+        <ul class="filter-list">
         <?php
         foreach($categories as $category) { 
             

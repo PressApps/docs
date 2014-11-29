@@ -1,4 +1,5 @@
 <?php
+global $helpdesk;
 ?>
 <?php get_template_part('templates/page', 'header'); ?>
 
@@ -8,36 +9,40 @@
   </div>
 <?php endif; ?>
 
-    <?php if ($helpdesk['headline_search']) { ?>
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-          <?php get_template_part('templates/search', 'form'); ?>
-        </div>
-      </div>
-    <?php } ?>
-
 <?php
 /**
  * Subcategories
  */
+if (isset($helpdesk['exlude_cats']) && $helpdesk['exlude_cats'] != '') {
+  $exlude_cats = implode(",", $helpdesk['exlude_cats']);
+} else {
+  $exlude_cats = 'list';
+}
+
+
 $sub_category_id = get_query_var('cat');
 $subcat_args = array(
   'child_of' => $sub_category_id,
+  'exclude' => $exlude_cats,
 );
 $sub_categories = get_categories($subcat_args); 
 $sub_categories = wp_list_filter($sub_categories,array('parent'=>$sub_category_id));
 ?>
-<ul class="procedures">
+<ul class="filter-list">
 <?php if ($sub_categories) { ?>
   
     <?php foreach($sub_categories as $sub_category) {  ?>
-	    <h2 id="<?php echo $sub_category->slug; ?>"><?php echo $sub_category->name ?></h2>
+	    <h2 class="cat-title" id="<?php echo $sub_category->slug; ?>"><?php echo $sub_category->name ?></h2>
+      <?php if ($sub_category->description) {
+        //echo '<h4 class="cat-subtitle">' . $sub_category->description . '</h4>';
+      } ?>
+
 	    <?php 
 	    $cat_posts = get_posts(array(
 			'orderby' => 'ID',
 			'order' => 'DESC',
-	        'numberposts'   => -1,
-	        'cat'  => $sub_category->term_id,
+      'numberposts'   => -1,
+      'cat'  => $sub_category->term_id,
 	    ));
 
 	    foreach($cat_posts as $post){
