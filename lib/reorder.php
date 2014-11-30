@@ -2,9 +2,9 @@
 /**
  * Article reorder
  */
-global $pagenow, $helpdesk;
+global $pagenow, $docs;
 
-if(is_admin() && $helpdesk['reorder']) {
+if(is_admin() && $docs['reorder']) {
 
   if( $pagenow == 'edit.php') {
       if ( !isset($_GET['post_type'])  || 'post' == $_GET['post_type'] ) {
@@ -22,11 +22,11 @@ if(is_admin() && $helpdesk['reorder']) {
 
 }
 
-if ($helpdesk['reorder']) {
+if ($docs['reorder']) {
   add_action( 'admin_enqueue_scripts', 'papc_reorder_scripts' );
 }
 
-if ( !is_admin() && $helpdesk['reorder'] ) {
+if ( !is_admin() && $docs['reorder'] ) {
   add_filter( 'get_terms_orderby', 'pa_reorder_front_end_tax' );
   add_action( 'pre_get_posts', 'pa_reorder_front_end_posts', 1 );
 }
@@ -37,19 +37,19 @@ function papc_reorder_scripts() {
 
   if( $pagenow == 'edit.php') {
       if ( !isset($_GET['post_type']) || 'post' == $_GET['post_type'] ) {
-          wp_register_style('pressapps_order-admin-styles', get_template_directory_uri() . '/assets/css/reorder.css');
-          wp_register_script('pressapps_order-update-order', get_template_directory_uri() . '/assets/js/vendor/order-posts.js');
+          wp_register_style('docs_order-admin-styles', get_template_directory_uri() . '/assets/css/reorder.css');
+          wp_register_script('docs_order-update-order', get_template_directory_uri() . '/assets/js/vendor/order-posts.js');
           wp_enqueue_script('jquery-ui-sortable');
-          wp_enqueue_script('pressapps_order-update-order');
-          wp_enqueue_style('pressapps_order-admin-styles');         
+          wp_enqueue_script('docs_order-update-order');
+          wp_enqueue_style('docs_order-admin-styles');         
       }
   } elseif( $pagenow == 'edit-tags.php' ) {
       if ( isset($_GET['taxonomy']) && ('category' == $_GET['taxonomy'] || 'actions' == $_GET['taxonomy']) ) {
-          wp_register_style('pressapps_order-admin-styles', get_template_directory_uri() . '/assets/css/reorder.css');
-          wp_register_script('pressapps_order-update-order', get_template_directory_uri() . '/assets/js/vendor/order-taxonomies.js');
+          wp_register_style('docs_order-admin-styles', get_template_directory_uri() . '/assets/css/reorder.css');
+          wp_register_script('docs_order-update-order', get_template_directory_uri() . '/assets/js/vendor/order-taxonomies.js');
           wp_enqueue_script('jquery-ui-sortable');
-          wp_enqueue_script('pressapps_order-update-order');
-          wp_enqueue_style('pressapps_order-admin-styles');
+          wp_enqueue_script('docs_order-update-order');
+          wp_enqueue_style('docs_order-admin-styles');
       }
   } 
 }
@@ -110,21 +110,25 @@ function pa_order_save_taxonomies_order() {
 
 /* front end */
 function pa_reorder_front_end_posts( $query ) {
-    if ( is_admin() /* || !$query->is_main_query() */ )
+    
+    if ( is_admin() )
         return;
-
-    //if ( !isset($query->query_vars['post_type']) ) {
+    
+    if(is_category()){
         $query->set( 'orderby', 'menu_order' );
         $query->set( 'order', 'ASC' );       
-        return;
-    //}
+    }
+    
+    return;
 
 }
 
 function pa_reorder_front_end_tax($orderby) {
-
-  $orderby = "t.term_group";
-  
+    
+    if(is_page_template('template-home.php') || is_category()){  
+        $orderby = "t.term_group";
+    }
+    
   return $orderby; 
 
 }

@@ -2,9 +2,9 @@
   <div class="navbar-docs">
     <ul class="nav" role="tablist">
     <?php
-    global $helpdesk;
-    if (isset($helpdesk['exlude_cats']) && $helpdesk['exlude_cats'] != '') {
-      $exlude_cats = implode(",", $helpdesk['exlude_cats']);
+    global $docs;
+    if (isset($docs['exlude_cats']) && $docs['exlude_cats'] != '') {
+      $exlude_cats = implode(",", $docs['exlude_cats']);
     } else {
       $exlude_cats = 'list';
     }
@@ -34,7 +34,7 @@
         foreach($cat_posts as $post){
           setup_postdata($post);
           ?>
-          <li class="menu-title"><a href="#<?php the_slug(); ?>"><span></span><?php the_title(); ?></a></li>
+          <li class="menu-title"><a href="#<?php the_slug(); ?>"><?php the_title(); ?></a></li>
           <?php
         }
         ?>

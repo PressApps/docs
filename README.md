@@ -1,8 +1,8 @@
-# [Helpdesk Theme](http://pressapps.co/)
+# [Docs Theme](http://pressapps.co/)
 
-Helpdesk is a WordPress Knowledge base theme based on [Roots](https://github.com/roots/roots).
+Docs is a WordPress Knowledge base theme based on [Roots](https://github.com/roots/roots).
 
-* Source: [https://github.com/pressapps/helpdesk](https://github.com/pressapps/helpdesk)
+* Source: [https://github.com/pressapps/docs](https://github.com/pressapps/docs)
 * Homepage: [http://roots.io/](http://pressapps.co/)
 * Documentation: [http://pressapps.co/docs/](http://pressapps.co/docs/)
 * Twitter: [@pressapps](https://twitter.com/pressapps)

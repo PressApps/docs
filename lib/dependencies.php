@@ -14,14 +14,14 @@
  * Include the TGM_Plugin_Activation class.
  */
 require_once dirname( __FILE__ ) . '/classes/class-tgm-plugin-activation.php';
-add_action( 'tgmpa_register', 'helpdesk_register_required_plugins' );
+add_action( 'tgmpa_register', 'docs_register_required_plugins' );
 /**
  * Register the required plugins for this theme.
  *
  * This function is hooked into tgmpa_init, which is fired within the
  * TGM_Plugin_Activation class constructor.
  */
-function helpdesk_register_required_plugins() {
+function docs_register_required_plugins() {
     /**
      * Array of plugin arrays. Required keys are name and slug.
      * If the source is NOT from the .org repo, then source is also required.

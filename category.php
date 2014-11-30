@@ -1,11 +1,11 @@
 <?php
-global $helpdesk;
+global $docs;
 ?>
 <?php get_template_part('templates/page', 'header'); ?>
 
 <?php if (!have_posts()) : ?>
   <div class="alert alert-warning">
-    <?php _e('Sorry, no results were found.', 'roots'); ?>
+    <?php _e('Sorry, no results were found.', 'pressapps'); ?>
   </div>
 <?php endif; ?>
 
@@ -13,8 +13,8 @@ global $helpdesk;
 /**
  * Subcategories
  */
-if (isset($helpdesk['exlude_cats']) && $helpdesk['exlude_cats'] != '') {
-  $exlude_cats = implode(",", $helpdesk['exlude_cats']);
+if (isset($docs['exlude_cats']) && $docs['exlude_cats'] != '') {
+  $exlude_cats = implode(",", $docs['exlude_cats']);
 } else {
   $exlude_cats = 'list';
 }

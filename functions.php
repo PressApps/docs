@@ -9,77 +9,27 @@
  *
  */
 
-define('OPT_NAME', 'helpdesk');
+define('OPT_NAME', 'docs');
 
-/**
- * Include addons
- */
-/*
-$path = dirname( __FILE__ ) . '/lib/addons/';
-$addons = scandir( $path, 1 );      
-foreach($addons as $addon_file) {
-  if ( !is_file($path . $addon_file) ) {
-    continue; 
-  } 
-  $addon_path = $path . $addon_file;
-  require_once $addon_path;
-}
-unset($addon_file, $addon_path);
-*/
 /**
  * Core files
  */
 $pa_includes = array(
-  'lib/extensions/extensions.php',      // Metaboxes
-  'lib/options.php',         // Theme Options
-  'lib/utils.php',           // Utility functions
-  'lib/init.php',            // Initial theme setup and constants
-  'lib/widgets.php',         // Widgets
-  'lib/wrapper.php',         // Theme wrapper class
-  'lib/sidebar.php',         // Sidebar class
-  'lib/config.php',          // Configuration
-  'lib/titles.php',          // Page titles
-  //'lib/nav.php',             // Custom nav modifications
-  'lib/dependencies.php',    // Install deoendency plugins
-  'lib/scripts.php',         // Scripts and stylesheets
-  'lib/extras.php',          // Custom functions
-  'lib/reorder.php',          // Custom
-  'lib/post-types.php',          // Custom
-  'lib/popular.php',          // Custom
-  'lib/live-search.php',          // Custom
-  'lib/category-icons.php',          // Custom
-  //'lib/votes.php',          // Custom
-  'lib/breadcrumbs.php',          // Custom
-  'lib/dynamic-css.php',          // Custom
+  'lib/extensions/extensions.php',  // Metaboxes
+  'lib/options.php',                // Theme Options
+  'lib/init.php',                   // Theme setup and functions
+  'lib/wrapper.php',                // Theme wrapper class
+  'lib/dependencies.php',           // Install deoendency plugins
+  'lib/scripts.php',                // Scripts and stylesheets
+  'lib/reorder.php',                // Reorder
+  'lib/dynamic-css.php',            // Custom CSS
 );
 
 foreach ($pa_includes as $file) {
   if (!$filepath = locate_template($file)) {
-    trigger_error(sprintf(__('Error locating %s for inclusion', 'roots'), $file), E_USER_ERROR);
+    trigger_error(sprintf(__('Error locating %s for inclusion', 'pressapps'), $file), E_USER_ERROR);
   }
 
   require_once $filepath;
 }
 unset($file, $filepath);
-
-
-
-function filter_query( $query ) {
-  if ( is_category() ) {
-      $query->set( 'posts_per_page', -1 );
-    return;
-  }
-}
-add_action( 'pre_get_posts', 'filter_query', 1 );
-
-
-
-function the_slug($echo=true){
-  $slug = basename(get_permalink());
-  do_action('before_slug', $slug);
-  $slug = apply_filters('slug_filter', $slug);
-  if( $echo ) echo $slug;
-  do_action('after_slug', $slug);
-  return $slug;
-}
-

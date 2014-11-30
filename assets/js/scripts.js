@@ -2120,23 +2120,44 @@ var Roots = {
       // JavaScript to be fired on all pages
       $("main").fitVids();
 
-/*
+      $('#searchcat').fastLiveFilter('.filter-list');
 
-$('#button').toggle( 
-    function() {
-        $('.banner').animate({ left: 250 }, 'slow', function() {
-            $('#button').html('Close');
-        });
-    }, 
-    function() {
-        $('.banner').animate({ left: 0 }, 'slow', function() {
-            $('#button').html('Menu');
-        });
-    }
-);
-*/
+      $('.banner a, .toggle-menu').not('.banner .menu-item-has-children > a').click(function(){
+        document.body.className=-1!==document.body.className.indexOf("open-menu")?"closed-menu":"open-menu";
+      });
 
+      $(".scroll-top").hide();
 
+      $(window).scroll(function () {
+          if ($(this).scrollTop() > 500) {
+              $('.scroll-top').fadeIn();
+          } else {
+              $('.scroll-top').fadeOut();
+          }
+      });
+
+      $( '.scroll-top' ).click( function ( e ) {
+        $( 'body,html' ).animate( { scrollTop: 0 }, 500 );
+        e.preventDefault();
+      });
+
+      $('.menu-item-has-children').find('.sub-menu').hide();
+      $('.menu-item-has-children > a').click(function(e){
+        $this = $(this);
+          $this.parent().find('ul').slideToggle(200);
+          e.preventDefault();
+      });
+
+      $( '.menu-title a' ).each( function () {
+        var destination = '';
+        $( this ).click( function( e ) {
+          e.preventDefault();
+          var elementClicked = $( this ).attr( 'href' );
+          var elementOffset = jQuery( 'body' ).find( elementClicked ).offset();
+          destination = elementOffset.top;
+          jQuery( 'html,body' ).animate( { scrollTop: destination - 40 }, 300 );
+        } );
+      });
 
     }
   },
@@ -2178,130 +2199,6 @@ $(document).ready(UTIL.loadEvents);
 })(jQuery); // Fully reference jQuery after this point.
 
 
-
-/***************************************************
-      Docs Voting
-***************************************************/
-jQuery().ready(function(){
-  jQuery('a.like-btn').click(function(){
-    response_div = jQuery(this).parent().parent();
-    jQuery.ajax({
-      url         : PAAV.base_url,
-      data        : {'vote_like':jQuery(this).attr('post_id')},
-      beforeSend  : function(){},
-      success     : function(data){
-        response_div.hide().html(data).fadeIn(400);
-      },
-      complete    : function(){}
-    });
-  });
-  
-  jQuery('a.dislike-btn').click(function(){
-    response_div = jQuery(this).parent().parent();
-    jQuery.ajax({
-      url         : PAAV.base_url,
-      data        : {'vote_dislike':jQuery(this).attr('post_id')},
-      beforeSend  : function(){},
-      success     : function(data){
-        response_div.hide().html(data).fadeIn(400);
-      },
-      complete    : function(){}
-    });
-  });
-});
-
-/***************************************************
-      Live Search
-***************************************************/
-var _url = '';
-jQuery(function ($) {
-    'use strict';
-
-    jQuery.Autocomplete.prototype.suggest = function () {
-      
-        if (this.suggestions.length === 0) {
-            this.hide();
-            return;
-        }
-
-        var that = this,
-            formatResult = that.options.formatResult,
-            value = that.getQuery(that.currentValue),
-            className = that.classes.suggestion,
-            classSelected = that.classes.selected,
-            container = $(that.suggestionsContainer),
-            html = '';
-        // Build suggestions inner HTML
-        $.each(that.suggestions, function (i, suggestion) {
-            html += '<div class="' + className + '" data-index="' + i + '"><h4>'+suggestion.icon + formatResult(suggestion, value) + '</h4></div>';
-        });
-
-        container.html(html).show();
-        that.visible = true;
-
-        // Select first value by default:
-        if (that.options.autoSelectFirst) {
-            that.selectedIndex = 0;
-            container.children().first().addClass(classSelected);
-        }
-    };
-    
- // Initialize ajax autocomplete:
-    $('#live').autocomplete({
-        serviceUrl: _url + '/wp-admin/admin-ajax.php',
-        params: {'action':'search_title'},
-        minChars: 2,
-        maxHeight: 450,
-        onSelect: function(suggestion) {
-          window.location = suggestion.data.url;
-        }
-    });
-});
-
-
-jQuery().ready(function($){
-
-  $('.banner a, .toggle-menu').not('.banner .menu-item-has-children > a').click(function(){
-    document.body.className=-1!==document.body.className.indexOf("open-menu")?"closed-menu":"open-menu";
-  });
-
-  $(".scroll-top").hide();
-
-  $(window).scroll(function () {
-      if ($(this).scrollTop() > 500) {
-          $('.scroll-top').fadeIn();
-      } else {
-          $('.scroll-top').fadeOut();
-      }
-  });
-
-  $( '.scroll-top' ).click( function ( e ) {
-    $( 'body,html' ).animate( { scrollTop: 0 }, 500 );
-    e.preventDefault();
-  });
-
-  $('.menu-item-has-children').find('.sub-menu').hide();
-  $('.menu-item-has-children > a').click(function(e){
-    $this = $(this);
-      $this.parent().find('ul').slideToggle(200);
-      e.preventDefault();
-  });
-
-  $( '.menu-title a' ).each( function () {
-    var destination = '';
-    $( this ).click( function( e ) {
-      e.preventDefault();
-      var elementClicked = $( this ).attr( 'href' );
-      var elementOffset = jQuery( 'body' ).find( elementClicked ).offset();
-      destination = elementOffset.top;
-      jQuery( 'html,body' ).animate( { scrollTop: destination - 40 }, 300 );
-    } );
-  });
-
-});
-
-
-
 /**
  * fastLiveFilter jQuery plugin 1.0.3
  * 
@@ -2309,7 +2206,6 @@ jQuery().ready(function($){
  * License: <http://www.opensource.org/licenses/bsd-license.php>
  * Project Website: http://anthonybush.com/projects/jquery_fast_live_filter/
  **/
-
 jQuery.fn.fastLiveFilter = function(list, options) {
   // Options: input, list, timeout, callback
   options = options || {};
@@ -2336,12 +2232,12 @@ jQuery.fn.fastLiveFilter = function(list, options) {
     for (var i = 0; i < len; i++) {
       li = lis[i];
       if ((li.textContent || li.innerText || "").toLowerCase().indexOf(filter) >= 0) {
-        if (li.style.display == "none") {
+        if (li.style.display === "none") {
           li.style.display = oldDisplay;
         }
         numShown++;
       } else {
-        if (li.style.display != "none") {
+        if (li.style.display !== "none") {
           li.style.display = "none";
         }
       }
@@ -2358,8 +2254,4 @@ jQuery.fn.fastLiveFilter = function(list, options) {
     keyTimeout = setTimeout(function() { input.change(); }, timeout);
   });
   return this; // maintain jQuery chainability
-}
-
-jQuery().ready(function(){
-    jQuery('#searchcat').fastLiveFilter('.filter-list');
-});
+};

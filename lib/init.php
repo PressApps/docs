@@ -1,45 +1,32 @@
 <?php
+global $docs;
+
 /**
  * Roots initial setup and constants
  */
-function roots_setup() {
+function theme_setup() {
   // Make theme available for translation
-  // Community translations can be found at https://github.com/roots/roots-translations
-  load_theme_textdomain('roots', get_template_directory() . '/lang');
+  load_theme_textdomain('pressapps', get_template_directory() . '/lang');
 
   // Register wp_nav_menu() menus
-  // http://codex.wordpress.org/Function_Reference/register_nav_menus
   register_nav_menus(array(
-    'primary_navigation_left' => __('Primary Navigation Left', 'roots'),
-    'primary_navigation_right' => __('Primary Navigation Right', 'roots'),
-    'footer_navigation' => __('Footer Navigation', 'roots'),
+    'primary_navigation' => __('Primary Navigation', 'pressapps'),
   ));
 
-  // Add post thumbnails
-  // http://codex.wordpress.org/Post_Thumbnails
-  // http://codex.wordpress.org/Function_Reference/set_post_thumbnail_size
-  // http://codex.wordpress.org/Function_Reference/add_image_size
-  //add_theme_support('post-thumbnails');
-
-  // Add post formats
-  // http://codex.wordpress.org/Post_Formats
-  add_theme_support('post-formats', array('aside', 'gallery', 'link', 'image', 'quote', 'video', 'audio'));
-
   // Add HTML5 markup for captions
-  // http://codex.wordpress.org/Function_Reference/add_theme_support#HTML5
   add_theme_support('html5', array('caption', 'comment-form', 'comment-list'));
 
   // Tell the TinyMCE editor to use a custom stylesheet
   add_editor_style('/assets/css/editor-style.css');
 }
-add_action('after_setup_theme', 'roots_setup');
+add_action('after_setup_theme', 'theme_setup');
 
 /**
  * Register sidebars
  */
 function roots_widgets_init() {
   register_sidebar(array(
-    'name'          => __('Primary', 'roots'),
+    'name'          => __('Primary', 'pressapps'),
     'id'            => 'sidebar-primary',
     'before_widget' => '<div class="widget %1$s %2$s">',
     'after_widget'  => '</div>',
@@ -47,62 +34,203 @@ function roots_widgets_init() {
     'after_title'   => '</h3>',
   ));
 
-  register_sidebar(array(
-    'name'          => __('Home Page', 'roots'),
-    'id'            => 'sidebar-home',
-    'before_widget' => '<div class="widget %1$s %2$s'. pa_count_widgets( 'sidebar-home' ) .' half-gutter-col"><div class="widget-inner">',
-    'after_widget'  => '</div></div>',
-    'before_title'  => '<h3>',
-    'after_title'   => '</h3>',
-  ));
-
 }
 add_action('widgets_init', 'roots_widgets_init');
 
+/**
+ * Configuration values
+ */
+define('GOOGLE_ANALYTICS_ID', $docs['analytics_id']); 
 
+if (!defined('WP_ENV')) {
+  define('WP_ENV', 'production');  // scripts.php checks for values 'production' or 'development'
+}
 
 /**
- * Count number of widgets in a sidebar
+ * $content_width is a global variable used by WordPress for max image upload sizes
+ * and media embeds (in pixels).
  */
-function pa_count_widgets( $sidebar_id, $count = FALSE ) {
-  // If loading from front page, consult $_wp_sidebars_widgets rather than options
-  // to see if wp_convert_widget_settings() has made manipulations in memory.
-  global $_wp_sidebars_widgets;
-  if ( empty( $_wp_sidebars_widgets ) ) :
-    $_wp_sidebars_widgets = get_option( 'sidebars_widgets', array() );
-  endif;
+if (!isset($content_width)) { $content_width = 1140; }
 
-  $sidebars_widgets_count = $_wp_sidebars_widgets;
-
-  if ( isset( $sidebars_widgets_count[ $sidebar_id ] ) && count( $sidebars_widgets_count[ $sidebar_id ] ) > 0 ) :
-    $widget_count = count( $sidebars_widgets_count[ $sidebar_id ] );
-    $col = ceil(12 / $widget_count);
-    $widget_classes = ' col-sm-' . $col;
-    if ($count) {
-      return $widget_count;
+/**
+ * Page titles
+ */
+function roots_title() {
+  if (is_home()) {
+    if (get_option('page_for_posts', true)) {
+      return get_the_title(get_option('page_for_posts', true));
     } else {
-      return $widget_classes;
+      return __('Latest Posts', 'pressapps');
     }
-  endif;
+  } elseif (is_archive()) {
+    $term = get_term_by('slug', get_query_var('term'), get_query_var('taxonomy'));
+    if ($term) {
+      return apply_filters('single_term_title', $term->name);
+    } elseif (is_post_type_archive()) {
+      return apply_filters('the_title', get_queried_object()->labels->name);
+    } elseif (is_day()) {
+      return sprintf(__('Daily Archives: %s', 'pressapps'), get_the_date());
+    } elseif (is_month()) {
+      return sprintf(__('Monthly Archives: %s', 'pressapps'), get_the_date('F Y'));
+    } elseif (is_year()) {
+      return sprintf(__('Yearly Archives: %s', 'pressapps'), get_the_date('Y'));
+    } elseif (is_author()) {
+      $author = get_queried_object();
+      return sprintf(__('Author Archives: %s', 'pressapps'), apply_filters('the_author', is_object($author) ? $author->display_name : null));
+    } else {
+      return single_cat_title('', false);
+    }
+  } elseif (is_search()) {
+    return sprintf(__('Search Results for %s', 'pressapps'), get_search_query());
+  } elseif (is_404()) {
+    return __('Not Found', 'pressapps');
+  } else {
+    return get_the_title();
+  }
 }
 
 /**
- * Add classes to custom Reduxs sidebar widgets
+ * // Tell WordPress to use searchform.php from the templates/ directory
  */
-/*
-add_filter('redux_custom_widget_args', 'custom_sidebar_classes');
-
-function custom_sidebar_classes($options) {
-  global $helpdesk, $post;
-  $home_sidebar = redux_post_meta( 'helpdesk', $post->ID, 'home_sidebar' );
-
-  $options = array(
-    'before_title'  => '<h3>',
-    'after_title'   => '</h3>',
-    'before_widget' => '<div class="widget %1$s %2$s half-gutter-col '. pa_count_widgets( $home_sidebar ) .'"><div class="widget-inner">',
-    'after_widget'  => '</div></div>'
-  );
-
-    return $options;
+function roots_get_search_form($form) {
+  $form = '';
+  locate_template('/templates/searchform.php', true, false);
+  return $form;
 }
-*/
+add_filter('get_search_form', 'roots_get_search_form');
+
+/**
+ * Add page slug to body_class() classes if it doesn't exist
+ */
+function roots_body_class($classes) {
+  // Add post/page slug
+  if (is_single() || is_page() && !is_front_page()) {
+    if (!in_array(basename(get_permalink()), $classes)) {
+      $classes[] = basename(get_permalink());
+    }
+  }
+  return $classes;
+}
+add_filter('body_class', 'roots_body_class');
+
+/**
+ * Clean up the_excerpt()
+ */
+function roots_excerpt_more($more) {
+  return ' &hellip; <a href="' . get_permalink() . '">' . __('Continued', 'pressapps') . '</a>';
+}
+add_filter('excerpt_more', 'roots_excerpt_more');
+
+/**
+ * Manage output of wp_title()
+ */
+function roots_wp_title($title) {
+  if (is_feed()) {
+    return $title;
+  }
+
+  $title .= get_bloginfo('name');
+
+  return $title;
+}
+add_filter('wp_title', 'roots_wp_title', 10);
+
+/**
+ * Add custom favicon to head
+ */
+function pa_add_favicon(){ 
+  global $docs;
+  ?>
+  <!-- Custom Favicons -->
+  <link rel="shortcut icon" href="<?php echo $docs['favicon']['url']; ?>"/>
+  <?php }
+add_action('wp_head','pa_add_favicon');
+
+/**
+ * Pagination
+ */
+function page_navi($before = '', $after = '') {
+  global $wpdb, $wp_query;
+  $request = $wp_query->request;
+  $posts_per_page = intval(get_query_var('posts_per_page'));
+  $paged = intval(get_query_var('paged'));
+  $numposts = $wp_query->found_posts;
+  $max_page = $wp_query->max_num_pages;
+  if ( $numposts <= $posts_per_page ) { return; }
+  if(empty($paged) || $paged == 0) {
+    $paged = 1;
+  }
+  $pages_to_show = 7;
+  $pages_to_show_minus_1 = $pages_to_show-1;
+  $half_page_start = floor($pages_to_show_minus_1/2);
+  $half_page_end = ceil($pages_to_show_minus_1/2);
+  $start_page = $paged - $half_page_start;
+  if($start_page <= 0) {
+    $start_page = 1;
+  }
+  $end_page = $paged + $half_page_end;
+  if(($end_page - $start_page) != $pages_to_show_minus_1) {
+    $end_page = $start_page + $pages_to_show_minus_1;
+  }
+  if($end_page > $max_page) {
+    $start_page = $max_page - $pages_to_show_minus_1;
+    $end_page = $max_page;
+  }
+  if($start_page <= 0) {
+    $start_page = 1;
+  }
+    
+  echo $before.'<nav class="text-center"><ul class="pagination pagination-sm">'."";
+    
+  $prevposts = get_previous_posts_link('&larr;');
+  if($prevposts) { echo '<li>' . $prevposts  . '</li>'; }
+  
+  for($i = $start_page; $i  <= $end_page; $i++) {
+    if($i == $paged) {
+      echo '<li class="active"><a href="#">'.$i.'</a></li>';
+    } else {
+      echo '<li><a href="'.get_pagenum_link($i).'">'.$i.'</a></li>';
+    }
+  }
+  echo '<li class="">';
+  next_posts_link('&rarr;');
+  echo '</li>';
+  echo '</ul>'.$after."</nav>";
+}
+
+/**
+ * Styled elements
+ */
+function pa_style_tag($id) {
+  $meta = redux_post_meta( 'docs', $id );
+  $class = '';
+  if ($meta['style_ol']) {
+    $class .= ' style-ol';
+  }
+  return $class;
+}
+
+
+/**
+ * Display all post on category page
+ */
+function filter_query( $query ) {
+  if ( is_category() ) {
+      $query->set( 'posts_per_page', -1 );
+    return;
+  }
+}
+add_action( 'pre_get_posts', 'filter_query', 1 );
+
+/**
+ * Get the slug
+ */
+function the_slug($echo=true){
+  $slug = basename(get_permalink());
+  do_action('before_slug', $slug);
+  $slug = apply_filters('slug_filter', $slug);
+  if( $echo ) echo $slug;
+  do_action('after_slug', $slug);
+  return $slug;
+}
+

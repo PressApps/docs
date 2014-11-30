@@ -76,7 +76,6 @@ module.exports = function(grunt) {
         files: {
           'assets/js/scripts.min.js': [jsFileList],
           'assets/js/vendor/jquery.fitvids.min.js': 'assets/vendor/fitvids/jquery.fitvids.js',
-          'assets/js/vendor/jquery.autocomplete.min.js': 'assets/vendor/devbridge-autocomplete/src/jquery.autocomplete.js',
         }
       }
     },
@@ -142,8 +141,7 @@ module.exports = function(grunt) {
           jsFileList,
           '<%= jshint.all %>'
         ],
-        tasks: ['concat']
-        //tasks: ['jshint', 'concat']
+        tasks: ['jshint', 'concat']
       },
       livereload: {
         // Browser live reloading

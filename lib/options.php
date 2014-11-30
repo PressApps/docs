@@ -5,9 +5,9 @@
      * For full documentation, please visit: http://docs.reduxframework.com/
      */
 
-    if ( ! class_exists( 'Helpdesk_Redux_Framework_config' ) ) {
+    if ( ! class_exists( 'Docs_Redux_Framework_config' ) ) {
 
-        class Helpdesk_Redux_Framework_config {
+        class Docs_Redux_Framework_config {
 
             public $args = array();
             public $sections = array();
@@ -232,16 +232,6 @@
                     $sampleHTML = $wp_filesystem->get_contents( dirname( __FILE__ ) . '/info-html.html' );
                 }
 
-                /*
-                $this->sections[] = array(
-                    'icon'   => 'el-icon-screen',
-                    'title'  => __( 'General', 'redux-framework-demo' ),
-                    'fields' => array(
-
-                    )
-                );
-                */
-
                 // ACTUAL DECLARATION OF SECTIONS
                 $this->sections[] = array(
                     'icon'   => 'el-icon-cog',
@@ -268,7 +258,7 @@
                             'id'       => 'footer_text',
                             'type'     => 'editor',
                             'title'    => __( 'Footer Text', 'redux-framework-demo' ),
-                            'default'  => 'Powered by Helpdesk Theme.',
+                            'default'  => 'Powered by Docs Theme.',
                             'args'     => array(
                                 'media_buttons' => false,
                             ),
@@ -281,27 +271,6 @@
                             'mode'     => 'css',
                             'theme'    => 'monokai',
                             'default'  => '',
-                        ),
-                    )
-                );
-
-                $this->sections[] = array(
-                    'icon'       => 'el-icon-star-empty',
-                    'title'      => __( 'Features', 'redux-framework-demo' ),
-                    'fields'     => array(
-                        array(
-                            'id' => 'reorder',
-                            'type' => 'switch',
-                            'title' => __('Reorder', 'pressapps' ), 
-                            'desc' => __('Enable drag and drop reordering under Posts>>All Posts, Posts>>Categories and Posts>>Actions.', 'pressapps' ),
-                            "default"       => 1,
-                        ),
-                        array(
-                            'id'       => 'icons_category',
-                            'type'     => 'switch',
-                            'title'    => __( 'Category Icons', 'redux-framework-demo' ),
-                            'desc'     => __( 'Enable category icons (Assign icons to categoies under Posts >> Categories).', 'redux-framework-demo' ),
-                            'default'  => '1'
                         ),
                     )
                 );
@@ -335,7 +304,7 @@
                         array(
                             'id'       => 'navbar_hover_bg',
                             'type'     => 'color',
-                            'title'    => __( 'Navigation Hover Background', 'redux-framework-demo' ),
+                            'title'    => __( 'Navigation Hover', 'redux-framework-demo' ),
                             'default'  => '#5b90bf',
                             'mode'     => 'background',
                             'transparent' => false,
@@ -343,7 +312,7 @@
                             'output'    => '.nav li a:hover, .nav li a:focus, .navbar-docs li.active > a, .current-menu-parent > a, .current-menu-item a',
                         ),
                         array(
-                            'title'     => __( 'Autocollapse Doc Menu', 'shoestrap' ),
+                            'title'     => __( 'Autocollapse Menu', 'shoestrap' ),
                             'desc'      => __( 'Autocollapse inactive subcategories in document menu', 'shoestrap' ),
                             'id'        => 'autocollapse_doc',
                             'default'   => 1,
@@ -361,58 +330,20 @@
                                 ),
                             ),
                         ),
-                        array(
-                            'id'        => 'exlude_cats',
-                            'title'     => __('Exclude Categories', 'redux-framework-demo'),
-                            'type'      => 'select',
-                            'data'      => 'categories',
-                            'multi'     => true,
-                            'desc'      => __('Select categories to exlude from query (If none selected all categories will be displayed).', 'redux-framework-demo'),
-                        ),
-/*
-                        array(
-                            'id'       => 'navbar_link_color',
-                            'type'     => 'link_color',
-                            'title'    => __( 'Link Colors', 'redux-framework-demo' ),
-                            'active'    => false,
-                            'default'  => array(
-                                'regular' => '#999999',
-                                'hover'   => '#439dd0',
-                            ),
-                        ),
-                        array(
-                            'id'       => 'headline_text',
-                            'type'     => 'color',
-                            'title'    => __( 'Text Color', 'redux-framework-demo' ),
-                            'default'  => '#aaaaaa',
-                            'transparent' => false,
-                            'validate' => 'color',
-                            'output'    => array(
-                                'color'            => '.breadcrumb, .breadcrumb a, .breadcrumb span, .breadcrumb > .active, .breadcrumb > li + li:before'
-                            )
-                        ),
-                        array(
-                            'id'       => 'headline_padding',
-                            'type'     => 'spacing',
-                            'output'   => array( '.headline' ),
-                            'mode'     => 'padding',
-                            'right'         => false,
-                            'left'          => false,
-                            'units'         => 'px',
-                            'title'    => __( 'Padding', 'redux-framework-demo' ),
-                            'desc'     => __( 'Default headline top and bottom padding in px.', 'redux-framework-demo' ),
-                            'default'  => array(
-                                'padding-top'    => '30px',
-                                'padding-bottom' => '30px',
-                            )
-                        ),
-*/
                     )
                 );
+
                 $this->sections[] = array(
                     'icon'       => 'el-icon-file',
                     'title'      => __( 'Document Page', 'redux-framework-demo' ),
                     'fields'     => array(
+                        array(
+                            'id' => 'reorder',
+                            'type' => 'switch',
+                            'title' => __('Reorder', 'pressapps' ), 
+                            'desc' => __('Enable drag and drop reordering under Posts>>All Posts, Posts>>Categories and Posts>>Actions.', 'pressapps' ),
+                            "default"       => 1,
+                        ),
                         array(
                             'id' => 'header_filter',
                             'type' => 'switch',
@@ -426,6 +357,15 @@
                             'id'        => 'filter_placeholder',
                             'default'   => 'Filter Document',
                             'type'      => 'text',
+                            'required' => array('header_filter','=','1'),       
+                        ),
+                        array(
+                            'id'        => 'exlude_cats',
+                            'title'     => __('Exclude Categories', 'redux-framework-demo'),
+                            'type'      => 'select',
+                            'data'      => 'categories',
+                            'multi'     => true,
+                            'desc'      => __('Select categories to exlude from query (If none selected all categories will be displayed).', 'redux-framework-demo'),
                         ),
                     )
                 );
@@ -468,17 +408,10 @@
                             ),
                             'output'   => array( 'body' ),
                         ),
-                    )
-                );
-
-                $this->sections[] = array(
-                    'icon'   => 'el-icon-tint',
-                    'title'  => __( 'Colors', 'redux-framework-demo' ),
-                    'fields' => array(
                         array(
                             'id'       => 'primary_color',
                             'type'     => 'link_color',
-                            'title'    => __( 'Primary Color', 'redux-framework-demo' ),
+                            'title'    => __( 'Link Colors', 'redux-framework-demo' ),
                             'desc'     => __( 'Select main content link colors.', 'redux-framework-demo' ),
                             'active'    => false, 
                             'default'  => array(
@@ -487,18 +420,6 @@
                             ),
                             'output'   => array( 'a' ),
                         ),
-                        /*
-                        array(
-                            'id'       => 'secondary_color',
-                            'type'     => 'color',
-                            'title'    => __( 'Secondary Color', 'redux-framework-demo' ),
-                            'desc' => __( 'Select secondary font color (Applies to article summaries, comments and sidebar.', 'redux-framework-demo' ),
-                            'default'  => '#84949f',
-                            'transparent' => false,
-                            'validate' => 'color',
-                            'output'   => array( 'h1, h2, h3, h4, h5, h6, .related, .comments, #respond, .box .entry-summary, .box p, .sidebar' ),
-                        ),
-                        */
                     )
                 );
 
@@ -540,11 +461,11 @@
                 if ( file_exists( dirname( __FILE__ ) . '/../CHANGELOG.md' ) ) {
 
                     $this->sections[] = array(
-                        'icon'   => 'el-icon-list-alt',
+                        'icon'   => 'el-icon-fork',
                         'title'  => __( 'Changelog', 'redux-framework-demo' ),
                         'fields' => array(
                             array(
-                                'id'       => '17',
+                                'id'       => '18',
                                 'type'     => 'raw',
                                 'markdown' => true,
                                 'content'  => file_get_contents( dirname( __FILE__ ) . '/../CHANGELOG.md' )
@@ -552,23 +473,6 @@
                         ),
                     );
                 }
-
-                if ( file_exists( dirname( __FILE__ ) . '/../LICENSE.md' ) ) {
-
-                    $this->sections[] = array(
-                        'icon'   => 'el-icon-list-alt',
-                        'title'  => __( 'License', 'redux-framework-demo' ),
-                        'fields' => array(
-                            array(
-                                'id'       => '17',
-                                'type'     => 'raw',
-                                'markdown' => true,
-                                'content'  => file_get_contents( dirname( __FILE__ ) . '/../LICENSE.md' )
-                            ),
-                        ),
-                    );
-                }
-
 
             }
 
@@ -744,9 +648,9 @@
         }
 
         global $reduxConfig;
-        $reduxConfig = new Helpdesk_Redux_Framework_config();
+        $reduxConfig = new Docs_Redux_Framework_config();
     } else {
-        echo "The class named Helpdesk_Redux_Framework_config has already been called. <strong>Developers, you need to prefix this class with your company name or you'll run into problems!</strong>";
+        echo "The class named Docs_Redux_Framework_config has already been called. <strong>Developers, you need to prefix this class with your company name or you'll run into problems!</strong>";
     }
 
     /**

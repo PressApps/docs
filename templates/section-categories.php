@@ -1,7 +1,7 @@
 <?php
 
-global $post, $helpdesk, $meta;
-$meta = redux_post_meta( 'helpdesk', get_the_ID() );
+global $post, $docs, $meta;
+$meta = redux_post_meta( 'docs', get_the_ID() );
 
 $section_categories_include = 'list';
 $section_categories_columns = 3;
@@ -34,32 +34,30 @@ $categories = wp_list_filter($categories,array('parent'=>0));
 ?>
 
 <section class="section-categories">
-    <div class="container1">
-        <?php
-        if ($title) {
-            echo '<h2 class="section-title">' . $title . '</h2>';
-        }
-        ?>
-        <ul class="filter-list">
-        <?php
-        foreach($categories as $category) { 
-            
-            $term_id        = array();
-            $term_id[]      = $category->term_id;
+    <?php
+    if ($title) {
+        echo '<h2 class="section-title">' . $title . '</h2>';
+    }
+    ?>
+    <ul class="filter-list row">
+    <?php
+    foreach($categories as $category) { 
+        
+        $term_id        = array();
+        $term_id[]      = $category->term_id;
 
-            ?>
-            <li class="col-sm-<?php echo $col_class; ?> half-gutter-col">
-        	    <a href="<?php echo get_category_link($category->term_id); ?>" title="<?php echo $category->name; ?>" class="box">
-        	        <h3><?php echo $category->name; ?></h3>
-        	        <p><?php echo $category->description; ?></p>
-        	    </a>
-        	</li>
-            <?php		
-            
-           
-        }
-        wp_reset_query();
         ?>
-        </ul>
-    </div>
+        <li class="col-sm-<?php echo $col_class; ?>">
+    	    <a href="<?php echo get_category_link($category->term_id); ?>" title="<?php echo $category->name; ?>" class="box">
+    	        <h3><?php echo $category->name; ?></h3>
+    	        <p><?php echo $category->description; ?></p>
+    	    </a>
+    	</li>
+        <?php		
+        
+       
+    }
+    wp_reset_query();
+    ?>
+    </ul>
 </section>

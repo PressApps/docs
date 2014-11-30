@@ -1,20 +1,30 @@
-.icon-wrap {
-  display: inline-block;
-}
-.icon-wrap, .entry-title .icon-wrap, a .icon-wrap {
-  color: #888;
-  margin-right: 5px;
-  font-size: 0.9em;
-}
 .entry-title {
   margin-bottom: 15px;
-  .icon {
-    color: #bbb;
-    font-size: 0.85em;
+}
+
+/* Sharing Anchors */
+.sharing-link {
     float: right;
-    margin: 4px 0 0 10px;
+    visibility: hidden;
+}
+.sharing-link i {
+    color: #ccc;
+}
+.hentry .sharing-link i {
+    font-size: 1.3em;
+    position: relative;
+    top: -0.15em;
+}
+.sharing-link:hover {
+    text-decoration: none;
+}
+@media (min-width: 768px) {
+  main .cat-title:hover > .sharing-link,
+  main .hentry:hover .sharing-link {
+      visibility: visible;
   }
 }
+
 article.hentry {
   margin-bottom: @section-spacing - 10;
 }
@@ -57,13 +67,6 @@ article.hentry {
   }
 }
 
-.module {
-  margin-top: @section-spacing;
-  h2 {
-    margin-bottom: 20px;
-  }
-}
-
 /**
  * Scroll to top
  */
@@ -83,80 +86,22 @@ a.scroll-top {
   text-indent: -999em;
 }
 a.scroll-top:before {
-  content: "";
+  font-family: 'docs';
+  content: "\e601";
   display: block;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  font-family: 'WebSymbolsRegular';
-  content: ">";
-  -webkit-transform: rotate(-90deg);
-  /* Saf3.1+, Chrome */
-
-  -moz-transform: rotate(-90deg);
-  /* FF3.5+ */
-
-  -ms-transform: rotate(-90deg);
-  /* IE9 */
-
-  -o-transform: rotate(-90deg);
-  /* Opera 10.5 */
-  transform: rotate(-90deg);
   zoom: 1;
   text-indent: 0;
   text-align: center;
   color: #fff;
-  line-height: 2;
+  line-height: 2.5;
 }
 a.scroll-top:hover {
   background: #000;
-}
-
-/**
- * Article voting
- */
-.vote {
-	text-align: center;
-	background-color: @element-bg;
-	padding-top: 25px;
-	padding-bottom: 25px;
-	border: 1px solid @element-border-color;
-  h3 {
-    text-align: center;
-    color: #9b9b9b;
-    margin: 0;
-  }
-  p {
-    margin: 25px 0 0;
-  }
-  .icon:hover {
-    opacity: 0.7;
-  }
-}
-.like-btn, .dislike-btn {
-  font-size: 36px;
-  margin: 0 20px;
-}
-.like-btn {
-  .icon {
-    color: #94bc1a;
-  }
-}
-.dislike-btn {
-  .icon {
-    color: #c84848;
-  }
-}
-
-/**
- * Related articles
- */
-.related {
-  p {
-    margin-bottom: 0;
-  }
 }
 
 /**
@@ -193,16 +138,6 @@ a.scroll-top:hover {
 .category-sub {
   margin-bottom: @section-spacing;
 }
-/*
-.category-posts {
-  padding: 0;
-  list-style: none;
-}
-.sub-categories {
-  margin-bottom: 25px;
-}
-
-*/
 
 /**
  * Document styled ordered list
