@@ -406,7 +406,7 @@
                                 'font-family' => 'Open Sans',
                                 'font-weight' => '300',
                             ),
-                            'output'   => array( 'body' ),
+                            'output'   => array( 'body', '.box p' ),
                         ),
                         array(
                             'id'       => 'primary_color',

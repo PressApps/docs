@@ -9,7 +9,7 @@ function pa_output_css() {
 
   $output = '';
   $output .= '.page-header h3 { color: ' . $docs['font_body']['color'] . '; }';
-  $output .= '.sharing-link:hover i { color: ' . $docs['primary_color']['regular'] . '; }';
+  $output .= '.sharing-link:hover i, .box h3 { color: ' . $docs['primary_color']['regular'] . '; }';
 /*
   $output .= '.btn-primary { background-color: ' . $docs['primary_color']['regular'] . '; border-color: ' . $docs['primary_color']['regular'] . '}';
   $output .= '.btn-primary:hover { background-color: ' . $docs['primary_color']['hover'] . '; border-color: ' . $docs['primary_color']['hover'] . '}';
