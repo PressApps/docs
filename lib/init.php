@@ -2,7 +2,7 @@
 global $docs;
 
 /**
- * Roots initial setup and constants
+ * Docs initial setup and constants
  */
 function theme_setup() {
   // Make theme available for translation
@@ -24,7 +24,7 @@ add_action('after_setup_theme', 'theme_setup');
 /**
  * Register sidebars
  */
-function roots_widgets_init() {
+function pa_widgets_init() {
   register_sidebar(array(
     'name'          => __('Primary', 'pressapps'),
     'id'            => 'sidebar-primary',
@@ -35,7 +35,7 @@ function roots_widgets_init() {
   ));
 
 }
-add_action('widgets_init', 'roots_widgets_init');
+add_action('widgets_init', 'pa_widgets_init');
 
 /**
  * Configuration values
@@ -55,7 +55,7 @@ if (!isset($content_width)) { $content_width = 1140; }
 /**
  * Page titles
  */
-function roots_title() {
+function pa_title() {
   if (is_home()) {
     if (get_option('page_for_posts', true)) {
       return get_the_title(get_option('page_for_posts', true));
@@ -92,17 +92,17 @@ function roots_title() {
 /**
  * // Tell WordPress to use searchform.php from the templates/ directory
  */
-function roots_get_search_form($form) {
+function pa_get_search_form($form) {
   $form = '';
   locate_template('/templates/searchform.php', true, false);
   return $form;
 }
-add_filter('get_search_form', 'roots_get_search_form');
+add_filter('get_search_form', 'pa_get_search_form');
 
 /**
  * Add page slug to body_class() classes if it doesn't exist
  */
-function roots_body_class($classes) {
+function pa_body_class($classes) {
   // Add post/page slug
   if (is_single() || is_page() && !is_front_page()) {
     if (!in_array(basename(get_permalink()), $classes)) {
@@ -111,20 +111,20 @@ function roots_body_class($classes) {
   }
   return $classes;
 }
-add_filter('body_class', 'roots_body_class');
+add_filter('body_class', 'pa_body_class');
 
 /**
  * Clean up the_excerpt()
  */
-function roots_excerpt_more($more) {
+function pa_excerpt_more($more) {
   return ' &hellip; <a href="' . get_permalink() . '">' . __('Continued', 'pressapps') . '</a>';
 }
-add_filter('excerpt_more', 'roots_excerpt_more');
+add_filter('excerpt_more', 'pa_excerpt_more');
 
 /**
  * Manage output of wp_title()
  */
-function roots_wp_title($title) {
+function pa_wp_title($title) {
   if (is_feed()) {
     return $title;
   }
@@ -133,7 +133,7 @@ function roots_wp_title($title) {
 
   return $title;
 }
-add_filter('wp_title', 'roots_wp_title', 10);
+add_filter('wp_title', 'pa_wp_title', 10);
 
 /**
  * Add custom favicon to head

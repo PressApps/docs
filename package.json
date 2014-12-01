@@ -1,19 +1,19 @@
 {
-  "name": "roots",
-  "version": "7.0.2",
-  "author": "Ben Word <ben@benword.com>",
-  "homepage": "http://roots.io",
+  "name": "docs",
+  "version": "0.9.0",
+  "author": "PressApps <support@guerilla.io>",
+  "homepage": "http://pressapps.co",
   "repository": {
     "type": "git",
-    "url": "git://github.com/roots/roots.git"
+    "url": "git@github.com:pressapps/docs.git"
   },
   "bugs": {
-    "url": "https://github.com/roots/roots/issues"
+    "url": "https://github.com/pressapps/docs/issues"
   },
   "licenses": [
     {
-      "type": "MIT",
-      "url": "http://opensource.org/licenses/MIT"
+      "type": "GPLv2",
+      "url": "http://www.gnu.org/licenses/gpl-2.0.html"
     }
   ],
   "scripts": {

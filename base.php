@@ -14,7 +14,7 @@
 
   <div class="wrap container" role="document">
     <main role="main">
-      <?php include roots_template_path(); ?>
+      <?php include pa_template_path(); ?>
     </main><!-- /.main -->
     <?php get_template_part('templates/footer'); ?>
   </div><!-- /.wrap -->

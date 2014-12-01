@@ -1,2 +1,2 @@
-### 0.9.0: November 23, 2014
+### 0.9.0: December 1, 2014
 * Initial Beta

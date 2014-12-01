@@ -248,6 +248,13 @@
                             'title' => __('Favicon Upload', 'pressapps' ),
                         ),
                         array(
+                            'title'     => __( 'License', 'shoestrap' ),
+                            'desc'      => __( 'Paste your license key.', 'shoestrap' ),
+                            'id'        => 'license_key',
+                            'default'   => '',
+                            'type'      => 'text',
+                        ),
+                        array(
                             'title'     => __( 'Google Analytics ID', 'shoestrap' ),
                             'desc'      => __( 'Paste your Google Analytics ID here to enable analytics tracking. ID should be in the form of UA-XXXXX-Y.', 'shoestrap' ),
                             'id'        => 'analytics_id',
