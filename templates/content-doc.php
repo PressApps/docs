@@ -4,7 +4,7 @@
 		<a href="#<?php the_slug(); ?>" class="sharing-link" title="Link to this document section"><i class="icon-link"></i></a>
     </h3>
   </header>
-  <div class="entry-summary">
+  <div class="entry-content<?php pa_style_tag(); ?>">
     <?php the_content(); ?>
   </div>
 </article>

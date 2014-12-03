@@ -201,13 +201,13 @@ function page_navi($before = '', $after = '') {
 /**
  * Styled elements
  */
-function pa_style_tag($id) {
-  $meta = redux_post_meta( 'docs', $id );
+function pa_style_tag() {
+  global $docs;
   $class = '';
-  if ($meta['style_ol']) {
+  if ($docs['style_ol']) {
     $class .= ' style-ol';
   }
-  return $class;
+  echo $class;
 }
 
 

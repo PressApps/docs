@@ -374,6 +374,13 @@
                             'multi'     => true,
                             'desc'      => __('Select categories to exlude from query (If none selected all categories will be displayed).', 'redux-framework-demo'),
                         ),
+                        array(
+                            'id'       => 'style_ol',
+                            'type'     => 'switch',
+                            'title'    => __( 'Ordered List', 'redux-framework-demo' ),
+                            'desc'     => __( 'Custom styled ordered list on document pages.', 'redux-framework-demo' ),
+                            'default'  => 1,
+                        ),
                     )
                 );
 
@@ -511,7 +518,7 @@
                     // Set it you want google fonts to update weekly. A google_api_key value is required.
                     'google_update_weekly' => false,
                     // Must be defined to add google fonts to the typography module
-                    'async_typography'     => true,
+                    'async_typography'     => false,
                     // Use a asynchronous font on the front end or font string
                     //'disable_google_fonts_link' => true,                    // Disable this in case you want to create your own google fonts loader
                     'admin_bar'            => true,

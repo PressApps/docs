@@ -4,7 +4,7 @@
     <header>
       <h1 class="entry-title"><?php the_title(); ?></h1>
     </header>
-    <div class="entry-content<?php echo pa_style_tag($post->ID); ?>">
+    <div class="entry-content<?php pa_style_tag(); ?>">
       <?php the_content(); ?>
     </div>
     <footer>
