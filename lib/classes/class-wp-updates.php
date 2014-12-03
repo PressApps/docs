@@ -66,3 +66,8 @@ if( !class_exists('WPUpdatesThemeUpdater_1087') ) {
 
     }
 }
+
+
+// global $docs;
+// $license_key = $docs['license_key'];
+new WPUpdatesThemeUpdater_1087( 'http://wp-updates.com/api/2/theme', basename( get_template_directory() ) );

@@ -15,14 +15,15 @@ define('OPT_NAME', 'docs');
  * Core files
  */
 $pa_includes = array(
-  'lib/extensions/extensions.php',  // Metaboxes
-  'lib/options.php',                // Theme Options
-  'lib/init.php',                   // Theme setup and functions
-  'lib/wrapper.php',                // Theme wrapper class
-  'lib/dependencies.php',           // Install deoendency plugins
-  'lib/scripts.php',                // Scripts and stylesheets
-  'lib/reorder.php',                // Reorder
-  'lib/dynamic-css.php',            // Custom CSS
+  'lib/extensions/extensions.php',    // Metaboxes
+  'lib/options.php',                  // Theme Options
+  'lib/init.php',                     // Theme setup and functions
+  'lib/wrapper.php',                  // Theme wrapper class
+  'lib/dependencies.php',             // Install deoendency plugins
+  'lib/scripts.php',                  // Scripts and stylesheets
+  'lib/reorder.php',                  // Reorder
+  'lib/dynamic-css.php',              // Custom CSS
+  'lib/classes/class-wp-updates.php', // Automatic updates
 );
 
 foreach ($pa_includes as $file) {
@@ -33,11 +34,3 @@ foreach ($pa_includes as $file) {
   require_once $filepath;
 }
 unset($file, $filepath);
-
-/**
- * Theme updates
- */
-global $docs;
-require_once('wp-updates-theme.php');
-$license_key = $docs['license_key'];
-new WPUpdatesThemeUpdater_1087( 'http://wp-updates.com/api/2/theme', basename( get_template_directory() ), $license_key );
