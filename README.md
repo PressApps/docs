@@ -1,10 +1,9 @@
-# [Docs Theme](http://pressapps.co/)
+# [Docs Theme](http://pressapps.co/docs-documentation-wordpress-theme/)
 
-Docs is a WordPress theme for creating online product or service documentation [Docs](http://pressapps.co/docs/).
+Docs is a WordPress theme for creating online product or service documentation [Docs](http://pressapps.co/docs-documentation-wordpress-theme/).
 
 * Source: [https://github.com/pressapps/docs](https://github.com/pressapps/docs)
-* Homepage: [http://pressapps.co/](http://pressapps.co/docs/)
-* Documentation: [http://pressapps.co/docs/](http://pressapps.co/docs/)
+* Homepage: [http://pressapps.co/docs-documentation-wordpress-theme/](http://pressapps.co/docs-documentation-wordpress-theme/)
 * Twitter: [@pressapps](https://twitter.com/pressapps)
 
 ## Features
