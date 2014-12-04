@@ -15,7 +15,6 @@ define('OPT_NAME', 'docs');
  * Core files
  */
 $pa_includes = array(
-  'lib/extensions/extensions.php',    // Metaboxes
   'lib/options.php',                  // Theme Options
   'lib/init.php',                     // Theme setup and functions
   'lib/wrapper.php',                  // Theme wrapper class

@@ -1,20 +1,19 @@
 <?php
 
-global $post, $docs, $meta;
-$meta = redux_post_meta( 'docs', get_the_ID() );
+global $post, $docs;
 
-$section_categories_include = 'list';
+$section_categories_exclude = '';
 $col_class = 6;
 
-$title = $meta['section_categories_title'];
-if (isset($meta['section_categories_include']) && $meta['section_categories_include'] != '') {
-    $section_categories_include = implode(",", $meta['section_categories_include']);
+$title = $docs['section_categories_title'];
+if (isset($docs['section_categories_exclude']) && $docs['section_categories_exclude'] != '') {
+    $section_categories_exclude = implode(",", $docs['section_categories_exclude']);
 }
 
 $categories = get_categories(array(
     'orderby'         => 'slug',
     'order'           => 'ASC',
-    'include'         => $section_categories_include,
+    'exclude'         => $section_categories_exclude,
 )); 
 
 $categories = wp_list_filter($categories,array('parent'=>0));

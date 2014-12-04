@@ -343,8 +343,48 @@
                 );
 
                 $this->sections[] = array(
+                    'icon'       => 'el-icon-home',
+                    'title'      => __( 'Home Page', 'redux-framework-demo' ),
+                    'fields'     => array(
+                        array(
+                            'id'       => 'home_sections',
+                            'title'    => __( 'Layout', 'redux-framework-demo' ),
+                            'type'     => 'sorter',
+                            'compiler' => 'true',
+                            'options'  => array(
+                                'Enabled'  => array(
+                                    'filter' => 'Filter',
+                                    'categories' => 'Categories',
+                                    'content' => 'Content',
+                                ),
+                                'Disabled' => array(),
+                            ),
+                        ),
+                        array(
+                            'id'       => 'subtitle',
+                            'type'     => 'text',
+                            'title'    => __( 'Subtitle', 'redux-framework-demo' ),
+                        ),
+                        array(
+                            'title'     => __( 'Title', 'shoestrap' ),
+                            'id'        => 'section_categories_title',
+                            'default'   => 'Browse Documents',
+                            'type'      => 'text'
+                        ),
+                        array(
+                            'id'        => 'section_categories_exclude',
+                            'title'     => __('Categories', 'redux-framework-demo'),
+                            'type'      => 'select',
+                            'data'      => 'categories',
+                            'multi'     => true,
+                            'desc'      => __('Select categories to display in section (If none selected all categories will be displayed).', 'redux-framework-demo'),
+                        ),
+                    )
+                );
+
+                $this->sections[] = array(
                     'icon'       => 'el-icon-file',
-                    'title'      => __( 'Document Page', 'redux-framework-demo' ),
+                    'title'      => __( 'Document Settings', 'redux-framework-demo' ),
                     'fields'     => array(
                         array(
                             'id' => 'reorder',

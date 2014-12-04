@@ -13,8 +13,7 @@ Template Name: Home
 </div>
 
 <?php
-$meta = redux_post_meta( 'docs', $post->ID );
-$layout = $meta['home_sections']['Enabled'];
+$layout = $docs['home_sections']['Enabled'];
 
 if ($layout): foreach ($layout as $key=>$value) {
  
